@@ -20,237 +20,81 @@
     <!-- 搜索区域 end -->
 
     <!-- 国内航班信息 start -->
-    <div data-role="china_plane" class="plane-show">
+    <script id="china_plane" type="text/html">
         <h2 class="content-heading">国内航班信息</h2>
         <div class="content-grid push-50">
             <!-- Simple Tiles -->
             <div class="row">
+                {{# layui.each( d, function(index, item){ }}
                 <div class="col-lg-4">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
+                    <a class="block block-link-hover2" href="javascript:void(0)">
                         <div class="block-content block-content-full clearfix">
                             <div class="col-sm-8">
                                 <div class="col-sm-12">
-                                    <span class="text-muted">去：11-2</span>
+                                    <span class="text-muted">去：{{ item.startTime }}</span>
                                     <i class="fa fa-exchange"></i>
-                                    <span class="text-muted">回：11-2</span>
+                                    <span class="text-muted">回：{{ item.endTime }}</span>
                                 </div>
                                 <div class="col-sm-12">
-                                    <span class="h4 font-w700">武汉&nbsp;</span>
+                                    <span class="h4 font-w700">{{ item.startCity }}</span>
                                     <i class="fa fa-exchange"></i>
-                                    <span class="h4 font-w700">&nbsp;北京</span>
+                                    <span class="h4 font-w700">{{ item.endCity }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <span class="h2 font-w700 text-city">￥600</span>
+                                <span class="h2 font-w700 text-city">￥{{ item.price }}</span>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <div class="col-sm-8">
-                                <div class="col-sm-12">
-                                    <span class="text-muted">去：11-2</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="text-muted">回：11-2</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <span class="h4 font-w700">武汉&nbsp;</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 font-w700">&nbsp;北京</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <span class="h2 font-w700 text-city">￥600</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-4">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <div class="col-sm-8">
-                                <div class="col-sm-12">
-                                    <span class="text-muted">去：11-2</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="text-muted">回：11-2</span>
-                                </div>
-                                <div class="col-sm-12">
-                                    <span class="h4 font-w700">武汉&nbsp;</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 font-w700">&nbsp;北京</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <span class="h2 font-w700 text-city">￥600</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                {{# }); }}
+                {{# if(d.length === 0){ }}
+                无数据
+                {{# } }}
             </div>
             <!-- END Simple Tiles -->
-
-            <!-- Colored Tiles -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <a class="block block-link-hover1" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-envelope fa-2x text-warning pull-right"></i>
-                            <span class="h4 font-w700">2</span> <span class="h4 text-muted">messages</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover1" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-users fa-2x text-danger pull-right"></i>
-                            <span class="h4 font-w700">65k</span> <span class="h4 text-muted">users</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover1" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-user-follow fa-2x text-primary pull-right"></i>
-                            <span class="h4 font-w700">30</span> <span class="h4 text-muted">clients</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- END Colored Tiles -->
-
-            <!-- Background Colored Tiles -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <a class="block block-link-hover2" href="javascript:void(0)">
-                        <div class="block-content block-content-full bg-primary clearfix">
-                            <i class="si si-envelope fa-2x text-white pull-right"></i>
-                            <span class="h4 font-w700 text-white">9</span> <span
-                                class="h4 text-white-op">messages</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover2" href="javascript:void(0)">
-                        <div class="block-content block-content-full bg-city clearfix">
-                            <i class="si si-users fa-2x text-white pull-right"></i>
-                            <span class="h4 font-w700 text-white">12k</span> <span class="h4 text-white-op">users</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover2" href="javascript:void(0)">
-                        <div class="block-content block-content-full bg-flat clearfix">
-                            <i class="si si-user-follow fa-2x text-white pull-right"></i>
-                            <span class="h4 font-w700 text-white">19</span> <span
-                                class="h4 text-white-op">clients</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- END Background Colored Tiles -->
         </div>
-
-    </div>
+    </script>
+    <div class="plane-show" id="china_plane_show"></div>
     <!-- 国内航班信息 end -->
 
     <!-- 国外航班信息 start -->
-    <div data-role="abroad_plane">
+    <script id="abroad_plane" type="text/html">
         <h2 class="content-heading">国外航班信息</h2>
         <div class="content-grid push-50">
             <!-- Simple Tiles -->
             <div class="row">
+                {{# layui.each( d, function(index, item){ }}
                 <div class="col-lg-4">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
+                    <a class="block block-link-hover2" href="javascript:void(0)">
                         <div class="block-content block-content-full clearfix">
-                            <i class="si si-envelope fa-2x text-muted pull-right"></i>
-                            <span class="h4 font-w700">5</span> <span class="h4 text-muted">messages</span>
+                            <div class="col-sm-8">
+                                <div class="col-sm-12">
+                                    <span class="text-muted">去：{{ item.startTime }}</span>
+                                    <i class="fa fa-exchange"></i>
+                                    <span class="text-muted">回：{{ item.endTime }}</span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <span class="h4 font-w700">{{ item.startCity }}</span>
+                                    <i class="fa fa-exchange"></i>
+                                    <span class="h4 font-w700">{{ item.endCity }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="h2 font-w700 text-city">￥{{ item.price }}</span>
+                            </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-users fa-2x text-muted pull-right"></i>
-                            <span class="h4 font-w700">15k</span> <span class="h4 text-muted">users</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-user-follow fa-2x text-muted pull-right"></i>
-                            <span class="h4 font-w700">12</span> <span class="h4 text-muted">clients</span>
-                        </div>
-                    </a>
-                </div>
+                {{# }); }}
+                {{# if(d.length === 0){ }}
+                无数据
+                {{# } }}
             </div>
             <!-- END Simple Tiles -->
-
-            <!-- Colored Tiles -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <a class="block block-link-hover1" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-envelope fa-2x text-warning pull-right"></i>
-                            <span class="h4 font-w700">2</span> <span class="h4 text-muted">messages</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover1" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-users fa-2x text-danger pull-right"></i>
-                            <span class="h4 font-w700">65k</span> <span class="h4 text-muted">users</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover1" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <i class="si si-user-follow fa-2x text-primary pull-right"></i>
-                            <span class="h4 font-w700">30</span> <span class="h4 text-muted">clients</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- END Colored Tiles -->
-
-            <!-- Background Colored Tiles -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <a class="block block-link-hover2" href="javascript:void(0)">
-                        <div class="block-content block-content-full bg-primary clearfix">
-                            <i class="si si-envelope fa-2x text-white pull-right"></i>
-                            <span class="h4 font-w700 text-white">9</span> <span
-                                class="h4 text-white-op">messages</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover2" href="javascript:void(0)">
-                        <div class="block-content block-content-full bg-city clearfix">
-                            <i class="si si-users fa-2x text-white pull-right"></i>
-                            <span class="h4 font-w700 text-white">12k</span> <span class="h4 text-white-op">users</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4">
-                    <a class="block block-link-hover2" href="javascript:void(0)">
-                        <div class="block-content block-content-full bg-flat clearfix">
-                            <i class="si si-user-follow fa-2x text-white pull-right"></i>
-                            <span class="h4 font-w700 text-white">19</span> <span
-                                class="h4 text-white-op">clients</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- END Background Colored Tiles -->
         </div>
-
-    </div>
+    </script>
+    <div class="plane-show" id="abroad_plane_show"></div>
     <!-- 国外航班信息 end	-->
 </div>
 
@@ -274,20 +118,73 @@
 <!-- 插件js应用 -->
 <script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="/plugins/slick/slick.min.js"></script>
+<script src="/plugins/layui/layui.js"></script>
 
 <script>
-    $(function () {
-        // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-        App.initHelpers(['datepicker', 'slick']);
-        $('#china_change').on('click', function () {
-            var china_start = $("#china_start").val();
-            $("#china_start").val($('#china_end').val());
-            $("#china_end").val(china_start);
+    layui.use('laytpl', function () {
+        var laytpl = layui.laytpl,
+            $ = layui.jquery;
+
+        $.ajax({
+            type: 'get',
+            dataType: 'text',
+            data: {
+                startCity: "上海",
+                endCity: '深圳'
+            },
+            url: '/china_plane',
+            success: function (data) {
+                //渲染模板数据
+                var getTpl = china_plane.innerHTML
+                    , view = document.getElementById('china_plane_show');
+                laytpl(getTpl).render(JSON.parse(data), function (html) {
+                    view.innerHTML = html;
+                });
+            }
         });
-        $('#abroad_change').on('click', function () {
-            var abroad_start = $("#abroad_start").val();
-            $("#abroad_start").val($('#abroad_end').val());
-            $("#abroad_end").val(abroad_start);
+
+        $.ajax({
+            type: 'get',
+            dataType: 'text',
+            data: {
+                startCity: "上海",
+                endCity: '深圳'
+            },
+            url: '/abroad_plane',
+            success: function (data) {
+                //渲染模板数据
+                var getTpl = abroad_plane.innerHTML
+                    , view = document.getElementById('abroad_plane_show');
+                laytpl(getTpl).render(JSON.parse(data), function (html) {
+                    view.innerHTML = html;
+                });
+            }
+        });
+
+
+        $(function () {
+            // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
+            App.initHelpers(['datepicker', 'slick']);
+            $('#china_change').on('click', function () {
+                var china_start = $("#china_start").val();
+                $("#china_start").val($('#china_end').val());
+                $("#china_end").val(china_start);
+            });
+            $('#abroad_change').on('click', function () {
+                var abroad_start = $("#abroad_start").val();
+                $("#abroad_start").val($('#abroad_end').val());
+                $("#abroad_end").val(abroad_start);
+            });
+            //获取ip地址
+            $.ajax({
+                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
+                type: 'POST',
+                dataType: 'jsonp',
+                success:function(data) {
+                    console.log(data.content.address_detail.province + "," + data.content.address_detail.city);
+                }
+            });
+
         });
     });
 </script>

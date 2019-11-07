@@ -12,4 +12,9 @@ public interface LoginService {
      * @return 是否登录成功
      */
     String login(Manager manager);
+
+    /**
+     * 初始化数据
+     */
+    void init();
 }

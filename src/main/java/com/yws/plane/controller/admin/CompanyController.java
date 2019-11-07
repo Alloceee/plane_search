@@ -1,24 +1,60 @@
 package com.yws.plane.controller.admin;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.yws.plane.entity.Company;
+import com.yws.plane.service.admin.CompanyService;
+import com.yws.plane.util.JSONData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.PostConstruct;
+import java.io.File;
+import java.util.List;
 
 /**
  * @author AlmostLover
  */
-@Controller
+@RestController
 @RequestMapping("/admin/company")
 public class CompanyController {
+    @Autowired
+    private CompanyService companyService;
 
-    @GetMapping("/upload")
-    public String index(){
-        return "admin/company/upload";
+    @RequestMapping("/icon")
+    public String icon(@RequestParam("file") MultipartFile file) {
+        return companyService.icon(file);
     }
 
-    @PostMapping("/upload")
-    public String upload(){
-        return "";
+    @PostMapping("/add")
+    public String add(Company company) {
+        return companyService.add(company);
+    }
+
+    @GetMapping("/manage")
+    public String manage() {
+        return companyService.show();
+    }
+
+    @GetMapping("/one")
+    public String one(Integer id) {
+        return companyService.one(id);
+    }
+
+    @PostMapping("/del")
+    public String del(String companies) {
+        return companyService.del(companies);
+    }
+
+    @PostMapping("/update")
+    public String update(Company company) {
+        return companyService.update(company);
+    }
+
+    @GetMapping("/all")
+    public String all(){
+        return companyService.all();
     }
 }

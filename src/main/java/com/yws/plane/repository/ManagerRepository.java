@@ -12,5 +12,5 @@ public interface ManagerRepository extends JpaRepository<Manager, Integer> {
      * 判断管理员密码是否正确
      * @return
      */
-    boolean findByUsernameAndPassword(String username,String password);
+    Manager findByUsernameAndPassword(String username,String password);
 }

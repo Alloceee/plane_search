@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.PostConstruct;
+
 /**
  * 后台管理
  *
@@ -20,11 +22,6 @@ public class AdminController {
     @Autowired
     private LoginService loginService;
 
-    @GetMapping("/index")
-    public String index() {
-        return "admin/login";
-    }
-
     @RequestMapping("/login")
     @ResponseBody
     public String login(Manager manager){
@@ -36,4 +33,8 @@ public class AdminController {
         return "admin/manager";
     }
 
+    @PostConstruct
+    public void init(){
+        loginService.init();
+    }
 }

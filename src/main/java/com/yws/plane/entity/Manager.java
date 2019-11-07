@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "tb_manager")
 public class Manager implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 50, nullable = false)

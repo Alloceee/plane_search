@@ -15,31 +15,31 @@ import java.io.Serializable;
 @Table(name = "tb_plane")
 public class Plane implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
      * 客机序号
      */
-    @Column(length = 6,nullable = false)
+    @Column(nullable = false,columnDefinition = "varchar(6) comment '客机序号'")
     private String number;
 
     /**
      * 客机型号,0小型，1中型，2大型
      */
-    @Column(length = 1,nullable = false)
+    @Column(nullable = false,columnDefinition = "int(1) comment '客机型号,0小型，1中型，2大型'")
     private Integer type;
 
     /**
      * 客机机型
      */
-    @Column(length = 5,nullable = false)
+    @Column(nullable = false,columnDefinition = "varchar(5) comment '客机机型'")
     private String model;
 
     /**
      * 所属公司
      */
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "int(255) comment '所属公司'")
     private Integer companyId;
 
 }

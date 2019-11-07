@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * 航空公司
+ *
  * @author AlmostLover
  */
 @Data
@@ -14,18 +15,25 @@ import java.io.Serializable;
 @Table(name = "tb_company")
 public class Company implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
      * 公司名称
      */
-    @Column(length = 10,nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(10) comment '公司名称'")
     private String name;
 
     /**
      * 公司头像
      */
+    @Column(columnDefinition = "varchar(50) comment '公司头像'")
     private String icon;
+
+    /**
+     * 详细介绍
+     */
+    @Column(columnDefinition = "text comment '详细介绍'")
+    private String description;
 
 }

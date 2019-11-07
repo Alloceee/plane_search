@@ -18,7 +18,7 @@
                     <h2 class="h2">后台管理登录</h2>
                 </div>
                 <div class="block-content block-content-narrow">
-                    <form class="form-horizontal push-10-t" method="post" action="/admin/home">
+                    <form class="form-horizontal push-8-t" method="post" action="/admin/home">
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-2">
                                 <div class="form-material">
@@ -69,7 +69,6 @@
 <script>
     $(function () {
         $('#submit').on('click', function () {
-            console.log($('form').serializeArray());
             $('form').submit();
         });
         $('form').validate({

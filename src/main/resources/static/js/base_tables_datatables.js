@@ -193,4 +193,6 @@ var BaseTableDatatables = function() {
 }();
 
 // Initialize when page loads
-jQuery(function(){ BaseTableDatatables.init(); });
+jQuery(function(){
+    BaseTableDatatables.init();
+});
