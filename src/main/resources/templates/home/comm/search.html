@@ -80,7 +80,7 @@
                     </a>
                 </div>
                 <div class="col-sm-12">
-                    <span class="btn btn-minw search-btn" type="button"><i class="fa fa-search">搜索</i></span>
+                    <span class="btn btn-minw search-btn" type="button" id="china_search"><i class="fa fa-search">搜索</i></span>
                 </div>
             </div>
             <div class="tab-pane" id="btabs-static-justified-profile">
@@ -144,7 +144,7 @@
                     </a>
                 </div>
                 <div class="col-sm-12">
-                    <span class="btn btn-minw search-btn" type="button"><i class="fa fa-search">搜索</i></span>
+                    <span class="btn btn-minw search-btn" type="button" id="abroad_search"><i class="fa fa-search">搜索</i></span>
                 </div>
             </div>
             <div class="tab-pane" id="btabs-static-justified-settings">
@@ -182,7 +182,13 @@
     </div>
 </div>
 <script>
-    
+    $('#china_search').on('click',function () {
+        console.log($('#china_start').val())
+        console.log($('#china_end').val())
+        // $.ajax({
+        //
+        // })
+    })
 </script>
 </body>
 </html>

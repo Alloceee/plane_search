@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 /**
  * 后台管理
@@ -24,8 +25,8 @@ public class AdminController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public String login(Manager manager){
-        return loginService.login(manager);
+    public String login(Manager manager, HttpSession session){
+        return loginService.login(manager,session);
     }
 
     @RequestMapping("/home")

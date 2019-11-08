@@ -30,4 +30,9 @@ public class RouterController {
     public String planeAdd() {
         return "admin/plane/add";
     }
+
+    @GetMapping("/plane/show")
+    public String planeShow() {
+        return "admin/plane/show";
+    }
 }

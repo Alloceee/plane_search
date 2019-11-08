@@ -23,6 +23,13 @@
         <div class="content content-boxed">
             <div class="block">
                 <div class="block-content">
+                    <div class="demoTable">
+                        搜索：
+                        <div class="layui-inline">
+                            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" data-type="reload">搜索</button>
+                    </div>
                     <table class="layui-hide" id="test" lay-filter="test"></table>
 
                     <script type="text/html" id="toolbarDemo">
@@ -48,30 +55,6 @@
     <div th:replace="/admin/comm/footer :: footer"></div>
 </div>
 
-<script id="tpl" type="text/html">
-    {{# layui.each( d, function(index, item){ }}
-    <tr>
-        <td class="text-center">{{ item.id }}</td>
-        <td class="font-w600">{{ item.name }}</td>
-        <td class="hidden-xs">{{ item.description }}</td>
-        <td class="hidden-xs">
-            <span class="label label-primary">{{ item.icon }}</span>
-        </td>
-        <td class="text-center">
-            <div class="btn-group">
-                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
-                        title="Edit Client"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
-                        title="Remove Client"><i class="fa fa-times"></i></button>
-            </div>
-        </td>
-    </tr>
-    {{# }); }}
-    {{# if(d.length === 0){ }}
-    无数据
-    {{# } }}
-</script>
-
 <!-- 基础js -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -92,7 +75,7 @@
 
         table.render({
             elem: '#test'
-            , url: '/admin/company/manage'
+            , url: '/admin/company/all'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print']
             , title: '用户数据表'
@@ -102,10 +85,17 @@
                     , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
                     , {field: 'name', title: '公司名称', width: 120, edit: 'text', sort: true, event: 'setName'}
                     , {field: 'description', title: '公司详细', edit: 'text', event: 'setDes'}
-                    , {field: 'icon', title: '公司图标', width: 100}
+                    , {field: 'icon', title: '公司图标',width: 80,templet: function(d){
+                        if((typeof d.icon)==="undefined"||d.icon===""){
+                            return "无";
+                        }else{
+                            return '<img style="width: 50px" src="http://www.yewenshu.top/'+d.icon+'"  alt="http://www.yewenshu.top/'+d.icon+'"/>'
+                        }
+                    }}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
                 ]
             ]
+            ,id: 'testReload'
             , page: true
         });
 
@@ -113,25 +103,19 @@
         table.on('toolbar(test)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
             var data = checkStatus.data;
-            // var ids = [];
-            // for (var i = 0; i < data.length; i++) {
-            //     ids.push(data[i].id);
-            // }
-            switch (obj.event) {
-                case 'delAll':
-                    $.ajax({
-                        data: {
-                            companies: JSON.stringify(data)
-                        },
-                        dataType: 'json',
-                        type: 'post',
-                        url: '/admin/company/del',
-                        success: function () {
-                            layer.msg("删除成功");
-                            checkStatus.del();
-                        }
-                    });
-                    break;
+            if (obj.event === 'delAll') {
+                $.ajax({
+                    data: {
+                        companies: JSON.stringify(data)
+                    },
+                    dataType: 'json',
+                    type: 'post',
+                    url: '/admin/company/del',
+                    success: function () {
+                        layer.msg("删除成功");
+                        checkStatus.del();
+                    }
+                });
             }
         });
 
@@ -222,6 +206,29 @@
                     });
                 });
             }
+        });
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $('#test');
+
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+                            id: demoReload.val()
+                        }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
     });
 </script>

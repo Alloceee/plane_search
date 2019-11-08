@@ -39,7 +39,8 @@ public class Plane implements Serializable {
     /**
      * 所属公司
      */
-    @Column(nullable = false,columnDefinition = "int(255) comment '所属公司'")
-    private Integer companyId;
+    @ManyToOne
+    @JoinColumn(name = "company_id",nullable = false,columnDefinition = "int(255) comment '所属公司'")
+    private Company company;
 
 }

@@ -20,7 +20,7 @@ public class PlaneController {
         return planeService.add(plane);
     }
 
-    @GetMapping("/show")
+    @GetMapping("/all")
     public String show(){
         return planeService.show();
     }
@@ -31,13 +31,14 @@ public class PlaneController {
     }
 
     @GetMapping("/del")
-    public String del(Integer id){
-        return planeService.del(id);
+    public String del(String planes){
+        return planeService.del(planes);
     }
 
     @PostMapping("/update")
     public String update(Plane plane){
         return planeService.update(plane);
     }
+
 
 }

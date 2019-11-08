@@ -40,7 +40,7 @@
                                     <div class="layui-upload">
                                         <button type="button" class="layui-btn" id="icon">上传图片</button>
                                         <div class="layui-upload-list">
-                                            <img class="layui-upload-img" id="demo1">
+                                            <img class="layui-upload-img" id="demo1" style="max-width: 308px">
                                             <p id="demoText"></p>
                                         </div>
                                         <input type="hidden" name="icon" id="icon_url">
@@ -102,6 +102,7 @@
                     layer.msg(res.msg);
                 } else {
                     $("#icon_url").val(res.data);
+                    layer.msg(res.msg, {icon: 1});
                 }
             }
             , error: function () {

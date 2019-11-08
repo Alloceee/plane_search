@@ -1,13 +1,17 @@
 package com.yws.plane.service.admin.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.yws.plane.entity.Plane;
 import com.yws.plane.repository.PlaneRepository;
 import com.yws.plane.service.admin.PlaneService;
 import com.yws.plane.util.JSONData;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.yws.plane.util.BeanUtils.getNullPropertyNames;
 
 @Service
 public class planeServiceImpl implements PlaneService {
@@ -16,28 +20,44 @@ public class planeServiceImpl implements PlaneService {
 
     @Override
     public String add(Plane plane) {
-        return null;
+        Plane plane1 = planeRepository.save(plane);
+        if (plane1 != null) {
+            return JSONData.toJsonString(0, "添加成功", "");
+        }
+        return JSONData.toJsonString(1, "添加失败", "");
     }
 
     @Override
     public String show() {
         List<Plane> planes = planeRepository.findAll();
+        System.out.println(planes);
         return JSONData.toJsonString(0, "", planes.size(), planes);
     }
 
     @Override
     public String one(Integer id) {
-        return null;
+        Plane plane = planeRepository.getOne(id);
+        return JSONData.toJsonString(0, "", plane);
     }
 
     @Override
-    public String del(Integer id) {
-        return null;
+    public String del(String planes) {
+        JSONArray array = JSONArray.parseArray(planes);
+        List<Plane> planes1 = array.toJavaList(Plane.class);
+        //批量删除
+        planeRepository.deleteInBatch(planes1);
+        return JSONData.toJsonString(0, "", "");
     }
 
     @Override
     public String update(Plane plane) {
-        return null;
+        Plane plane1 = planeRepository.getOne(plane.getId());
+        BeanUtils.copyProperties(plane, plane1, getNullPropertyNames(plane)); //使用更新对象的非空值去覆盖待更新对象
+        Plane c = planeRepository.save(plane); //执行更新操作
+        if (c != null) {
+            return JSONData.toJsonString(0, "", "");
+        }
+        return JSONData.toJsonString(1, "", "");
     }
 
 }

@@ -7,6 +7,8 @@ import com.yws.plane.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 管理员登录
  *
@@ -18,10 +20,11 @@ public class LoginServiceImpl implements LoginService {
     private ManagerRepository managerRepository;
 
     @Override
-    public String login(Manager manager) {
+    public String login(Manager manager,HttpSession session) {
         Manager res = managerRepository.findByUsernameAndPassword(manager.getUsername(),
                 MD5Util.Md5(manager.getUsername(), "root"));
         if (res != null) {
+            session.setAttribute("admin",res);
             return "true";
         }
         return "false";

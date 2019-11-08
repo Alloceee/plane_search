@@ -31,20 +31,20 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="company_id">所属公司</label>
                                 <div class="col-md-7">
-                                    <select id="company_id"></select>
+                                    <select id="company_id" name="companyId"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="model">客机机型</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="model" name="model" placeholder="客机机型">
+                                    <input class="form-control" type="text" id="model" name="model" placeholder="客机机型" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="number">客机序号</label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="text" id="number" name="number"
-                                           placeholder="客机序号">
+                                           placeholder="客机序号" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -115,7 +115,7 @@
         $('form').submit(function () {
             $.ajax({
                 data: $(this).serializeArray(),
-                url: '/admin/company/add',
+                url: '/admin/plane/add',
                 type: 'POST',
                 dataType: 'json',
                 success: function (res) {

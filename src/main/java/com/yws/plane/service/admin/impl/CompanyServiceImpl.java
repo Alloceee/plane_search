@@ -65,28 +65,16 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public String icon(MultipartFile file) {
-        //获取文件类型
-        String OriName = file.getOriginalFilename();
-        assert OriName != null;
-        String[] arg = OriName.split("\\.");
-        String type = arg[arg.length - 1];
         try {
             //将图片上传至七牛云
             String filename = FileUploadUtils.fileUpload(file.getBytes());
             if (filename != null) {
-                filename = filename + "." + type;
                 return JSONData.toJsonString(0, "图标上传成功", filename);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return JSONData.toJsonString(1, "图标上传失败", "");
-    }
-
-    @Override
-    public String all() {
-        List<Company> companies = companyRepository.findAll();
-        return JSONData.toJsonString(1, "图标上传失败", companies);
     }
 
 }

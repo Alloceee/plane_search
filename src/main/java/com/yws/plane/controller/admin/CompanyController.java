@@ -33,7 +33,7 @@ public class CompanyController {
         return companyService.add(company);
     }
 
-    @GetMapping("/manage")
+    @GetMapping("/all")
     public String manage() {
         return companyService.show();
     }
@@ -53,8 +53,4 @@ public class CompanyController {
         return companyService.update(company);
     }
 
-    @GetMapping("/all")
-    public String all(){
-        return companyService.all();
-    }
 }

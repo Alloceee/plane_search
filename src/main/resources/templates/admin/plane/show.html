@@ -15,7 +15,7 @@
         <!-- Page Header -->
         <div class="content bg-gray-lighter">
             <h1 class="page-heading push">
-                航空公司<small>信息管理</small>
+                航空客机<small>信息管理</small>
             </h1>
         </div>
         <!-- END Page Header -->
@@ -52,11 +52,9 @@
     {{# layui.each( d, function(index, item){ }}
     <tr>
         <td class="text-center">{{ item.id }}</td>
-        <td class="font-w600">{{ item.name }}</td>
-        <td class="hidden-xs">{{ item.description }}</td>
-        <td class="hidden-xs">
-            <span class="label label-primary">{{ item.icon }}</span>
-        </td>
+        <td class="font-w600">{{ item.company }}</td>
+        <td class="font-w600">{{ item.model }}</td>
+        <td class="font-w600">{{ item.number }}</td>
         <td class="text-center">
             <div class="btn-group">
                 <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip"
@@ -92,17 +90,19 @@
 
         table.render({
             elem: '#test'
-            , url: '/admin/company/manage'
+            , url: '/admin/plane/all'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print']
-            , title: '用户数据表'
+            , title: '航班客机表'
             , cols: [
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
-                    , {field: 'name', title: '公司名称', width: 120, edit: 'text', sort: true, event: 'setName'}
-                    , {field: 'description', title: '公司详细', edit: 'text', event: 'setDes'}
-                    , {field: 'icon', title: '公司图标', width: 100}
+                    , {field: 'company', title: '所属公司', width: 120, edit: 'text', sort: true, event: 'setCompany',templet: function(d){
+                        return d.company.name;
+                    }}
+                    , {field: 'model', title: '客机机型', edit: 'text', event: 'setDes'}
+                    , {field: 'number', title: '客机序号', width: 100}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
                 ]
             ]
@@ -113,10 +113,6 @@
         table.on('toolbar(test)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
             var data = checkStatus.data;
-            // var ids = [];
-            // for (var i = 0; i < data.length; i++) {
-            //     ids.push(data[i].id);
-            // }
             switch (obj.event) {
                 case 'delAll':
                     $.ajax({
@@ -125,7 +121,7 @@
                         },
                         dataType: 'json',
                         type: 'post',
-                        url: '/admin/company/del',
+                        url: '/admin/plane/del',
                         success: function () {
                             layer.msg("删除成功");
                             checkStatus.del();
@@ -147,7 +143,7 @@
                         },
                         dataType: 'json',
                         type: 'post',
-                        url: '/admin/company/del',
+                        url: '/admin/plane/del',
                         success: function () {
                             layer.msg("删除成功");
                             obj.del();
@@ -163,7 +159,7 @@
         //监听单元格事件
         table.on('tool(test)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'setName') {
+            if (obj.event === 'setCompany') {
                 layer.prompt({
                     formType: 2
                     , title: '修改 ID 为 [' + data.id + '] 的公司名称'
@@ -176,7 +172,7 @@
                             id: data.id,
                             name: value
                         },
-                        url: "/admin/company/update",
+                        url: "/admin/plane/update",
                         dataType: 'json',
                         type: 'post',
                         success: function (res) {
@@ -205,7 +201,7 @@
                             id: data.id,
                             description: value
                         },
-                        url: "/admin/company/update",
+                        url: "/admin/plane/update",
                         dataType: 'json',
                         type: 'post',
                         success: function (res) {

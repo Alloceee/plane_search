@@ -2,6 +2,7 @@ package com.yws.plane.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 /**
  * 返回Json数据处理类
@@ -54,7 +55,7 @@ public class JSONData {
         object.put("message", msg);
         object.put("count", count);
         object.put("data", data);
-        return object.toJSONString();
+        return JSON.toJSONString(object,SerializerFeature.DisableCircularReferenceDetect);
     }
 
 }
