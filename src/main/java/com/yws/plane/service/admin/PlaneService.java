@@ -3,7 +3,7 @@ package com.yws.plane.service.admin;
 import com.yws.plane.entity.Plane;
 
 public interface PlaneService {
-    String add(Plane plane);
+    String add(Plane plane,Integer companyId);
 
     String show();
 
@@ -13,4 +13,5 @@ public interface PlaneService {
 
     String update(Plane plane);
 
+    String getByCompany(Integer id);
 }

@@ -1,18 +1,10 @@
 package com.yws.plane.controller.admin;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.yws.plane.entity.Company;
 import com.yws.plane.service.admin.CompanyService;
-import com.yws.plane.util.JSONData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.annotation.PostConstruct;
-import java.io.File;
-import java.util.List;
 
 /**
  * @author AlmostLover

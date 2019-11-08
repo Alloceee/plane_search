@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ChinaFightRepository extends JpaRepository<ChinaFight, Integer> {
+public interface ChinaFightRepository extends JpaRepository<ChinaFight, Long> {
 
     List<ChinaFight> findTop12ByStartCityAndEndCityOrderByStartTime(String startCity, String endCity);
 

@@ -35,4 +35,14 @@ public class RouterController {
     public String planeShow() {
         return "admin/plane/show";
     }
+
+    @GetMapping("/fight/add")
+    public String fightAdd() {
+        return "admin/fight/add";
+    }
+
+    @GetMapping("/fight/show")
+    public String fightShow() {
+        return "admin/fight/show";
+    }
 }

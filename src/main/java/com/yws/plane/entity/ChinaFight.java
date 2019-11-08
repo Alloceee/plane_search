@@ -49,31 +49,35 @@ public class ChinaFight implements Serializable {
      * 起飞时间
      */
     @Column(nullable = false, columnDefinition = "datetime comment '起飞时间'")
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
 
     /**
      * 抵达时间
      */
     @Column(nullable = false, columnDefinition = "datetime comment '抵达时间'")
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     /**
      * 所属航班
      */
-    @Column(nullable = false, columnDefinition = "int(255) comment '所属航班'")
-    private Integer planeId;
+    @ManyToOne
+    @JoinColumn(name = "plane_id", nullable = false, columnDefinition = "int(255) comment '所属航班'")
+    private Plane plane;
 
+    /**
+     * 价格
+     */
     @Column(nullable = false, columnDefinition = "float(10, 2) comment '价格'")
     private Float price;
 
-    public String getStartTime(){
+    public String getStartTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(this.startTime);
     }
 
-    public String getEndTime(){
+    public String getEndTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(this.endTime);
     }

@@ -29,15 +29,15 @@ public class LogAspect {
         HttpServletRequest request = attributes.getRequest();
         //记录下请求内容
         LOGGER.info("URL : "+request.getRequestURL().toString());
-        LOGGER.info("IP : "+request.getRemoteAddr());
-        LOGGER.info("请求类方法 : "+joinPoint.getSignature());
-        LOGGER.info("请求类方法参数 : "+ Arrays.toString(joinPoint.getArgs()));
+//        LOGGER.info("IP : "+request.getRemoteAddr());
+//        LOGGER.info("请求类方法 : "+joinPoint.getSignature());
+//        LOGGER.info("请求类方法参数 : "+ Arrays.toString(joinPoint.getArgs()));
         LOGGER.info("==============================");
     }
 
     @AfterReturning(returning = "ret" , pointcut = "webLog()")
     public void doAfterReturning(Object ret){
         //处理完请求，返回内容
-        LOGGER.info("REQUEST : "+ret);
+//        LOGGER.info("REQUEST : "+ret);
     }
 }

@@ -6,10 +6,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 权限判断
+ */
 public class AuthorityInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("interceptor");
         //flag变量用于判断用户是否登录，默认为false
         boolean flag = false;
         //拦截请求

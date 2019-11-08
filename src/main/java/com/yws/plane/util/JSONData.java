@@ -29,7 +29,7 @@ public class JSONData {
         object.put("code", code);
         object.put("msg", msg);
         object.put("data", data);
-        return object.toJSONString();
+        return JSON.toJSONString(object,SerializerFeature.DisableCircularReferenceDetect);
     }
 
     /**

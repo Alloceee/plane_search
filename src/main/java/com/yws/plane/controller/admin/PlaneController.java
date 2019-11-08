@@ -3,7 +3,6 @@ package com.yws.plane.controller.admin;
 import com.yws.plane.entity.Plane;
 import com.yws.plane.service.admin.PlaneService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,8 @@ public class PlaneController {
     private PlaneService planeService;
 
     @PostMapping("/add")
-    public String add(Plane plane){
-        return planeService.add(plane);
+    public String add(Plane plane,Integer companyId){
+        return planeService.add(plane,companyId);
     }
 
     @GetMapping("/all")
@@ -30,7 +29,7 @@ public class PlaneController {
         return planeService.one(id);
     }
 
-    @GetMapping("/del")
+    @PostMapping("/del")
     public String del(String planes){
         return planeService.del(planes);
     }
@@ -40,5 +39,9 @@ public class PlaneController {
         return planeService.update(plane);
     }
 
+    @PostMapping("/getByCompany")
+    public String getByCompany(Integer companyId){
+        return planeService.getByCompany(companyId);
+    }
 
 }

@@ -59,9 +59,13 @@ public class AbroadFight implements Serializable {
     /**
      * 所属航班
      */
-    @Column(nullable = false, columnDefinition = "int(255) comment '所属航班'")
-    private Integer planeId;
+    @ManyToOne
+    @JoinColumn(name = "plane_id", nullable = false, columnDefinition = "int(255) comment '所属航班'")
+    private Plane plane;
 
+    /**
+     * 价格
+     */
     @Column(nullable = false, columnDefinition = "float(10, 2) comment '价格'")
     private Float price;
 
