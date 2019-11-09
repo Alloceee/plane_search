@@ -12,7 +12,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authorityInterceptor())
                 .addPathPatterns("/*")
-                .excludePathPatterns("/admin/index");
+                .excludePathPatterns("/admin/index")
+                .excludePathPatterns("/")
+                .excludePathPatterns("/search")
+                .excludePathPatterns("/china_plane")
+                .excludePathPatterns("/abroad_plane");
     }
 
     @Bean

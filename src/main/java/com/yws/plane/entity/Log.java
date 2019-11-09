@@ -12,6 +12,6 @@ public class Log implements Serializable {
     private Long id;
 
     private String ip;
-    
+
 
 }

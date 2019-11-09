@@ -120,73 +120,8 @@
 <script src="/plugins/slick/slick.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
 
-<script>
-    layui.use('laytpl', function () {
-        var laytpl = layui.laytpl,
-            $ = layui.jquery;
+<!-- 页面js -->
+<script src="/js/base_index.js"></script>
 
-        $.ajax({
-            type: 'get',
-            dataType: 'text',
-            data: {
-                startCity: "上海",
-                endCity: '深圳'
-            },
-            url: '/china_plane',
-            success: function (data) {
-                //渲染模板数据
-                var getTpl = china_plane.innerHTML
-                    , view = document.getElementById('china_plane_show');
-                laytpl(getTpl).render(JSON.parse(data), function (html) {
-                    view.innerHTML = html;
-                });
-            }
-        });
-
-        $.ajax({
-            type: 'get',
-            dataType: 'text',
-            data: {
-                startCity: "上海",
-                endCity: '深圳'
-            },
-            url: '/abroad_plane',
-            success: function (data) {
-                //渲染模板数据
-                var getTpl = abroad_plane.innerHTML
-                    , view = document.getElementById('abroad_plane_show');
-                laytpl(getTpl).render(JSON.parse(data), function (html) {
-                    view.innerHTML = html;
-                });
-            }
-        });
-
-
-        $(function () {
-            // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-            App.initHelpers(['datepicker', 'slick']);
-            $('#china_change').on('click', function () {
-                var china_start = $("#china_start").val();
-                $("#china_start").val($('#china_end').val());
-                $("#china_end").val(china_start);
-            });
-            $('#abroad_change').on('click', function () {
-                var abroad_start = $("#abroad_start").val();
-                $("#abroad_start").val($('#abroad_end').val());
-                $("#abroad_end").val(abroad_start);
-            });
-            //获取ip地址
-            $.ajax({
-                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
-                type: 'POST',
-                dataType: 'jsonp',
-                success:function(data) {
-                    console.log(data.content.address_detail.province + "," + data.content.address_detail.city);
-                }
-            });
-
-        });
-    });
-</script>
 </body>
 </html>

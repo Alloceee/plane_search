@@ -6,6 +6,7 @@ import com.yws.plane.entity.ChinaFight;
 import com.yws.plane.service.home.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class SearchController {
     public String abroad_plane(String startCity, String endCity) {
         List<AbroadFight> abroadFights = searchService.abroad_plane(startCity, endCity);
         return JSON.toJSONString(abroadFights);
+    }
+
+    @RequestMapping("/search")
+    public String search() {
+        return "home/search";
     }
 
 }
