@@ -4,8 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 国外航班信息
@@ -71,11 +71,17 @@ public class AbroadFight implements Serializable {
 
     public String getStartTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (this.startTime == null) {
+            return "";
+        }
         return sdf.format(this.startTime);
     }
 
     public String getEndTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (this.endTime == null) {
+            return "";
+        }
         return sdf.format(this.endTime);
     }
 }

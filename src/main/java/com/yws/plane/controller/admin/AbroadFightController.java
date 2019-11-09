@@ -18,8 +18,8 @@ public class AbroadFightController {
     private AbroadFightService abroadFightService;
 
     @PostMapping("/add")
-    public String add(AbroadFight abroadFight) {
-        return abroadFightService.add(abroadFight);
+    public String add(AbroadFight abroadFight, String time, Integer planeId) {
+        return abroadFightService.add(abroadFight, time, planeId);
     }
 
     @GetMapping("/show")

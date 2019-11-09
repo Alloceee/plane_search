@@ -1,7 +1,9 @@
 package com.yws.plane.controller.admin;
 
 import com.yws.plane.entity.ChinaFight;
+import com.yws.plane.entity.Plane;
 import com.yws.plane.service.admin.ChinaFightService;
+import com.yws.plane.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,27 +20,27 @@ public class ChinaFightController {
     private ChinaFightService chinaFightService;
 
     @PostMapping("/add")
-    public String add(ChinaFight chinaFight){
-        return chinaFightService.add(chinaFight);
+    public String add(ChinaFight chinaFight, String time,Integer planeId) {
+        return chinaFightService.add(chinaFight,time,planeId);
     }
 
     @GetMapping("/show")
-    public String show(){
+    public String show() {
         return chinaFightService.show();
     }
 
     @GetMapping("/one")
-    public String one(Long id){
+    public String one(Long id) {
         return chinaFightService.one(id);
     }
 
     @GetMapping("/del")
-    public String del(String chinaFights){
+    public String del(String chinaFights) {
         return chinaFightService.del(chinaFights);
     }
 
     @PostMapping("/update")
-    public String update(ChinaFight chinaFight){
+    public String update(ChinaFight chinaFight) {
         return chinaFightService.update(chinaFight);
     }
 }

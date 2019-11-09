@@ -15,5 +15,5 @@ public interface AbroadFightService {
 
     String update(AbroadFight abroadFight);
 
-    String add(AbroadFight abroadFight);
+    String add(AbroadFight abroadFight, String time, Integer planeId);
 }

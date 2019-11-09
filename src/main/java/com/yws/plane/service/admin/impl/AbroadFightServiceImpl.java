@@ -2,12 +2,11 @@ package com.yws.plane.service.admin.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yws.plane.entity.AbroadFight;
-import com.yws.plane.entity.ChinaFight;
+import com.yws.plane.entity.Plane;
 import com.yws.plane.repository.AbroadFightRepository;
-import com.yws.plane.repository.ChinaFightRepository;
 import com.yws.plane.service.admin.AbroadFightService;
-import com.yws.plane.service.admin.ChinaFightService;
 import com.yws.plane.util.JSONData;
+import com.yws.plane.util.TimeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,8 +58,12 @@ public class AbroadFightServiceImpl implements AbroadFightService {
     }
 
     @Override
-    public String add(AbroadFight abroadFight) {
-        System.out.println(abroadFight);
+    public String add(AbroadFight abroadFight, String time, Integer planeId) {
+        Plane plane = new Plane();
+        plane.setId(planeId);
+        abroadFight.setPlane(plane);
+        abroadFight.setStartTime(TimeUtils.stringToDate(TimeUtils.subStartTime(time), TimeUtils.PATTERN1));
+        abroadFight.setEndTime(TimeUtils.stringToDate(TimeUtils.subEndTime(time), TimeUtils.PATTERN1));
         AbroadFight abroadFight1 = abroadFightRepository.save(abroadFight);
         if (abroadFight1 != null) {
             return JSONData.toJsonString(0, "添加成功", "");

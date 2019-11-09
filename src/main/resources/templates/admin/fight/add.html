@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>航班信息上传界面</title>
-    <link rel="stylesheet" href="/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css">
     <link rel="stylesheet" id="css-main" href="/css/oneui.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="number">客机型号</label>
                                 <div class="col-md-7">
-                                    <select id="number" class="form-control"></select>
+                                    <select id="number" name="planeId" class="form-control"></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,34 +58,29 @@
                                 <label class="col-md-3 control-label" for="start_city">始发地</label>
                                 <div class="col-md-3">
                                     <input class="form-control" type="text" id="start_city"
-                                           name="start_city" placeholder="出发城市">
+                                           name="startCity" placeholder="出发城市">
                                 </div>
                                 <div class="col-md-3">
                                     <input class="form-control" type="text"
-                                           name="start_airport" placeholder="机场">
+                                           name="startAirport" placeholder="机场">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="end_city">目的地</label>
                                 <div class="col-md-3">
                                     <input class="form-control" type="text" id="end_city"
-                                           name="end_city" placeholder="抵达城市">
+                                           name="endCity" placeholder="抵达城市">
                                 </div>
                                 <div class="col-md-3">
                                     <input class="form-control" type="text"
-                                           name="end_airport" placeholder="机场">
+                                           name="endAirport" placeholder="机场">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="start_time">时间</label>
+                                <label class="col-md-3 control-label" for="time">时间范围</label>
                                 <div class="col-md-7">
-                                    <div class="input-daterange input-group" data-date-format="yyyy-mm-dd">
-                                        <input class="form-control" type="text" id="start_time"
-                                               name="start_time" placeholder="出发日期">
-                                        <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
-                                        <input class="form-control" type="text" id="end_time"
-                                               name="end_time" placeholder="返回日期">
-                                    </div>
+                                    <input type="text" class="form-control" id="time" name="time"
+                                           placeholder=" - ">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -105,8 +100,6 @@
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>
@@ -131,75 +124,9 @@
 <script src="/js/app.js"></script>
 
 <!-- 插件js应用 -->
-<script src="/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
 
-<script>
-    App.initHelpers(['datepicker']);
-    layui.use(['layer'], function () {
-        var $ = layui.jquery
-            , layer = layui.layer;
-        $.ajax({
-            url: "/admin/company/all",
-            dataType: 'json',
-            type: 'get',
-            success: function (res) {
-                var data = res.data;
-                for (var i = 0; i < data.length; i++) {
-                    $('#company').append('<option value="' + data[i]['id'] + '">' + data[i]['name'] + '</option>');
-                }
-            }
-        });
-        $('#company').on('change', function () {
-            var id = $(this).find('option:selected').val();
-            $('#number').html("");
-            $.ajax({
-                data: {
-                    companyId: id
-                },
-                dataType: 'json',
-                type: 'post',
-                url: '/admin/plane/getByCompany',
-                success: function (res) {
-                    if (res.code === 0) {
-                        var data = res.data;
-                        for (var i = 0; i < data.length; i++) {
-                            $('#number').append('<option value="' + data[i]['id'] + '">' + data[i]['number'] + '</option>');
-                        }
-                    }
-                }
-            });
-        });
-
-
-        $('form').submit(function () {
-            var form = $(this).serializeArray();
-            var type;
-            for (var i = 0; i < form.length; i++) {
-                if (form[i].name === "type") {
-                    if (form[i].value === 0) {
-                        type = "china";
-                    } else {
-                        type = "abroad";
-                    }
-                }
-            }
-            $.ajax({
-                data: $(this).serializeArray(),
-                url: '/admin/fight/' + type + '/add',
-                type: 'POST',
-                dataType: 'json',
-                success: function (res) {
-                    if (res.code > 0) {
-                        layer.msg(res.msg);
-                    } else {
-                        layer.msg(res.msg, {icon: 1});
-                        location.reload();
-                    }
-                }
-            })
-        })
-    });
-</script>
+<!-- 页面js -->
+<script src="/js/base/base_fight_add.js"></script>
 </body>
 </html>

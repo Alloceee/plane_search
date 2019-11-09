@@ -1,4 +1,4 @@
-package com.yws.plane.config;
+package com.yws.plane.interceptor;
 
 import com.yws.plane.entity.Manager;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 权限判断
+ *
+ * @author AlmostLover
  */
 public class AuthorityInterceptor extends HandlerInterceptorAdapter {
     @Override

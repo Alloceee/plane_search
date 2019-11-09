@@ -6,10 +6,13 @@ import com.yws.plane.entity.Plane;
 import com.yws.plane.repository.ChinaFightRepository;
 import com.yws.plane.service.admin.ChinaFightService;
 import com.yws.plane.util.JSONData;
+import com.yws.plane.util.TimeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static com.yws.plane.util.BeanUtils.getNullPropertyNames;
@@ -57,7 +60,12 @@ public class ChinaFightServiceImpl implements ChinaFightService {
     }
 
     @Override
-    public String add(ChinaFight chinaFight) {
+    public String add(ChinaFight chinaFight, String time, Integer planeId) {
+        Plane plane = new Plane();
+        plane.setId(planeId);
+        chinaFight.setPlane(plane);
+        chinaFight.setStartTime(TimeUtils.stringToDate(TimeUtils.subStartTime(time), TimeUtils.PATTERN1));
+        chinaFight.setEndTime(TimeUtils.stringToDate(TimeUtils.subEndTime(time), TimeUtils.PATTERN1));
         ChinaFight chinaFight1 = chinaFightRepository.save(chinaFight);
         if (chinaFight1 != null) {
             return JSONData.toJsonString(0, "添加成功", "");

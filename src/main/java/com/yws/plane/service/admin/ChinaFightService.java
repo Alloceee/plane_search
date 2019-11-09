@@ -15,5 +15,5 @@ public interface ChinaFightService {
 
     String update(ChinaFight chinaFight);
 
-    String add(ChinaFight chinaFight);
+    String add(ChinaFight chinaFight, String time,Integer planeId);
 }
