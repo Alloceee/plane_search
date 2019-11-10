@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 路由索引控制器
+ *
+ * @author yewenshu
  */
 @Controller
 @RequestMapping("/admin")
@@ -45,4 +47,25 @@ public class RouterController {
     public String fightShow() {
         return "admin/fight/show";
     }
+
+    @GetMapping("/news/add")
+    public String newsAdd() {
+        return "admin/news/add";
+    }
+
+    @GetMapping("/news/show")
+    public String newsShow() {
+        return "admin/news/show";
+    }
+
+    @GetMapping("/user/message")
+    public String userMessage() {
+        return "admin/user/message";
+    }
+
+    @GetMapping("/user/search")
+    public String userSearch() {
+        return "admin/user/search";
+    }
+
 }

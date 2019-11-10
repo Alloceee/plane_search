@@ -1,6 +1,8 @@
 package com.yws.plane.aspect;
 
+import com.yws.plane.entity.Error;
 import com.yws.plane.entity.Log;
+import com.yws.plane.repository.ErrorRepository;
 import com.yws.plane.repository.LogRepository;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -13,9 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.thymeleaf.expression.Maps;
+import org.thymeleaf.util.MapUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 采用springAOP进行日志管理
@@ -24,13 +32,13 @@ import java.util.Arrays;
  */
 @Aspect
 @Component
-public class LogAspect {
+public class ErrorAspect {
     @Autowired
-    private LogRepository logRepository;
+    private ErrorRepository errorRepository;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogAspect.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ErrorAspect.class);
 
-    @Pointcut("execution(public * com.yws.plane.controller.home.*.*(..))")
+    @Pointcut("execution(public * com.yws.plane.controller.ErrorController.*(..))")
     public void webLog() {
     }
 
@@ -40,16 +48,18 @@ public class LogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
-        Log log = new Log();
+        Error error = new Error();
         //请求url
-        log.setUrl(request.getRequestURL().toString());
+        error.setUrl(request.getRequestURL().toString());
         //请求IP
-        log.setIp(request.getRemoteAddr());
+        error.setIp(request.getRemoteAddr());
         //请求方法参数
-        log.setArgs(Arrays.toString(joinPoint.getArgs()));
-//        LOGGER.info("请求类方法 : "+joinPoint.getSignature())
-        System.out.println(log);
-        logRepository.save(log);
+        error.setArgs(joinPoint.getKind());
+
+        error.setErrorMessage(Arrays.toString(joinPoint.getArgs()));
+
+        System.out.println(error);
+        errorRepository.save(error);
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")

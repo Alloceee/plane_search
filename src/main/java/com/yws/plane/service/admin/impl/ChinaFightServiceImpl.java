@@ -52,7 +52,7 @@ public class ChinaFightServiceImpl implements ChinaFightService {
         //使用更新对象的非空值去覆盖待更新对象
         BeanUtils.copyProperties(chinaFight, chinaFight1, getNullPropertyNames(chinaFight));
         //执行更新操作
-        ChinaFight c = chinaFightRepository.save(chinaFight);
+        ChinaFight c = chinaFightRepository.save(chinaFight1);
         if (c != null) {
             return JSONData.toJsonString(0, "", "");
         }

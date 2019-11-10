@@ -5,18 +5,19 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
- * 航空公司
- *
- * @author AlmostLover
+ * @Author: yewenshu https://github.com/Alloceee
+ * @Date: 2019/11/10 20:34
+ * @Project: plane_search
  */
 @Data
-@Entity
-@Table(name = "tb_company")
-public class Company implements Serializable {
+@Document(indexName = "tb_com", type = "docs", shards = 1, replicas = 0)
+public class Com {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -40,5 +41,4 @@ public class Company implements Serializable {
     @Field(type = FieldType.Keyword)
     @Column(columnDefinition = "text comment '详细介绍'")
     private String description;
-
 }

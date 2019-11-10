@@ -6,6 +6,9 @@ import org.springframework.beans.BeanWrapperImpl;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author AlmostLover
+ */
 public class BeanUtils {
 
     public static String[] getNullPropertyNames(Object source) {

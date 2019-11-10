@@ -16,6 +16,9 @@ import java.util.List;
 
 import static com.yws.plane.util.BeanUtils.getNullPropertyNames;
 
+/**
+ * @author AlmostLover
+ */
 @Service
 public class CompanyServiceImpl implements CompanyService {
     @Autowired
@@ -31,8 +34,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public String show() {
-        List<Company> companies = companyRepository.findAll();
+    public String show(String key) {
+        List<Company> companies;
+//        if (key != null) {
+////            companies = companyRepository.findByNameLikeOrDescriptionLike(key);
+//        } else {
+            companies = companyRepository.findAll();
+//        }
         return JSONData.toJsonString(0, "", companies.size(), companies);
     }
 
@@ -54,8 +62,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public String update(Company company) {
         Company company1 = companyRepository.getOne(company.getId());
-        BeanUtils.copyProperties(company, company1, getNullPropertyNames(company)); //使用更新对象的非空值去覆盖待更新对象
-        Company c = companyRepository.save(company); //执行更新操作
+        //使用更新对象的非空值去覆盖待更新对象
+        BeanUtils.copyProperties(company, company1, getNullPropertyNames(company));
+        //执行更新操作
+        Company c = companyRepository.save(company1);
         if (c != null) {
             return JSONData.toJsonString(0, "", "");
         }
@@ -76,5 +86,6 @@ public class CompanyServiceImpl implements CompanyService {
         }
         return JSONData.toJsonString(1, "图标上传失败", "");
     }
+
 
 }

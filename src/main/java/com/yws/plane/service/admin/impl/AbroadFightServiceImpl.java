@@ -50,7 +50,7 @@ public class AbroadFightServiceImpl implements AbroadFightService {
         //使用更新对象的非空值去覆盖待更新对象
         BeanUtils.copyProperties(abroadFight, abroadFight1, getNullPropertyNames(abroadFight));
         //执行更新操作
-        AbroadFight c = abroadFightRepository.save(abroadFight);
+        AbroadFight c = abroadFightRepository.save(abroadFight1);
         if (c != null) {
             return JSONData.toJsonString(0, "", "");
         }

@@ -63,7 +63,7 @@ public class PlaneServiceImpl implements PlaneService {
         //使用更新对象的非空值去覆盖待更新对象
         BeanUtils.copyProperties(plane, plane1, getNullPropertyNames(plane));
         //执行更新操作
-        Plane c = planeRepository.save(plane);
+        Plane c = planeRepository.save(plane1);
         if (c != null) {
             return JSONData.toJsonString(0, "", "");
         }

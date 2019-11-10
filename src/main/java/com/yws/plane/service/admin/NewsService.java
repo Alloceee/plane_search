@@ -1,7 +1,6 @@
 package com.yws.plane.service.admin;
 
-import com.yws.plane.entity.Company;
-import org.springframework.web.multipart.MultipartFile;
+import com.yws.plane.entity.News;
 
 /**
  * @Author: yewenshu https://github.com/Alloceee
@@ -10,16 +9,22 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface NewsService {
     /**
-     * 添加公司信息
-     * @param company
+     * 添加公司新闻动态
+     *
+     * @param news 新闻信息
+     */
+    String add(News news);
+
+    /**
+     * 公司信息管理
+     *
      * @return
      */
-    String add(Company company);
-
     String show();
 
     /**
      * 根据id查询某条公司信息
+     *
      * @param id
      * @return
      */
@@ -27,22 +32,18 @@ public interface NewsService {
 
     /**
      * 批量删除
-     * @param companies
+     *
+     * @param news
      * @return
      */
-    String del(String companies);
+    String del(String news);
 
     /**
      * 更新
-     * @param company
+     *
+     * @param news
      * @return
      */
-    String update(Company company);
+    String update(News news);
 
-    /**
-     * 上传图片
-     * @param file
-     * @return
-     */
-    String icon(MultipartFile file);
 }

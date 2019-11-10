@@ -12,7 +12,7 @@ import java.sql.Date;
  */
 @Data
 @Entity
-@Table(name = "tb_dynamic")
+@Table(name = "tb_news")
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

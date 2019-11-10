@@ -7,14 +7,16 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- * 用户日志表
+ * 错误日志表
  *
- * @author AlmostLover
+ * @Author: yewenshu https://github.com/Alloceee
+ * @Date: 2019/11/10 21:09
+ * @Project: plane_search
  */
 @Entity
 @Data
-@Table(name = "tb_log")
-public class Log implements Serializable {
+@Table(name = "tb_error")
+public class Error implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,4 +43,9 @@ public class Log implements Serializable {
      */
     @Column(columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP comment '请求时间'")
     private Date requestTime;
+    /**
+     * 错误信息
+     */
+    @Column(nullable = false, columnDefinition = "varchar(255)  comment '错误信息'")
+    private String errorMessage;
 }
