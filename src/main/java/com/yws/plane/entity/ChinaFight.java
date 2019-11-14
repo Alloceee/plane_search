@@ -1,5 +1,6 @@
 package com.yws.plane.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -19,23 +20,27 @@ import java.util.Date;
 public class ChinaFight implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Excel(name = "id", width = 25, orderNum = "0")
     private Long id;
 
     /**
      * 始发地
      */
+    @Excel(name = "startCity", width = 25, orderNum = "0")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '始发地'")
     private String startCity;
 
     /**
      * 目的地
      */
+    @Excel(name = "endCity", width = 25, orderNum = "0")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '目的地'")
     private String endCity;
 
     /**
      * 始发机场
      */
+    @Excel(name = "startAirport", width = 25, orderNum = "0")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '始发机场'")
     private String startAirport;
 

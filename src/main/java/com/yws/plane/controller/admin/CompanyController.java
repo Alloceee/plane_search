@@ -1,14 +1,9 @@
 package com.yws.plane.controller.admin;
 
-import com.yws.plane.elasticsearch.CompanyElasticRepository;
-import com.yws.plane.entity.Com;
+//import com.yws.plane.elasticsearch.CompanyElasticRepository;
 import com.yws.plane.entity.Company;
 import com.yws.plane.service.admin.CompanyService;
-import com.yws.plane.util.JSONData;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,8 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
-    @Autowired
-    private CompanyElasticRepository companyElasticRepository;
+//    @Autowired
+//    private CompanyElasticRepository companyElasticRepository;
 
     @RequestMapping("/icon")
     public String icon(@RequestParam("file") MultipartFile file) {
@@ -53,13 +48,13 @@ public class CompanyController {
         return companyService.update(company);
     }
 
-    @GetMapping("/get")
-    public String search() {
-        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
-        builder.withQuery(QueryBuilders.fuzzyQuery("name", "南"))
-                .withQuery(QueryBuilders.fuzzyQuery("description", "南"));
-        Page<Com> company = companyElasticRepository.search(builder.build());
-        return JSONData.toJsonString(0, "", company);
-    }
+//    @GetMapping("/get")
+//    public String search() {
+//        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+//        builder.withQuery(QueryBuilders.fuzzyQuery("name", "南"))
+//                .withQuery(QueryBuilders.fuzzyQuery("description", "南"));
+//        Page<Com> company = companyElasticRepository.search(builder.build());
+//        return JSONData.toJsonString(0, "", company);
+//    }
 
 }

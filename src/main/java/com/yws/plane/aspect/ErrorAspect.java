@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 采用springAOP进行日志管理
+ * 采用springAOP进行错误日志管理
  *
  * @author AlmostLover
  */
