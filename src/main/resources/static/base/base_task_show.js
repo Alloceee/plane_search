@@ -49,7 +49,6 @@ layui.use('table', function () {
                             if (res.code === 0) {
                                 layer.msg("删除成功", {icon: 1});
                                 checkStatus.del();
-                                table.reload('testReload');
                             } else {
                                 layer.msg("删除失败", {icon: 5})
                             }
@@ -62,21 +61,22 @@ layui.use('table', function () {
         row: function () {
             table.on('tool(test)', function (obj) {
                 var data = obj.data;
-                console.log(obj.event);
+                //console.log(obj)
                 if (obj.event === 'del') {
                     layer.confirm('真的删除行么', function (index) {
                         $.ajax({
                             data: {
-                                id: data.id
+                                companies: data
                             },
                             dataType: 'json',
                             type: 'post',
                             url: '/admin/company/del',
                             success: function () {
-                                layer.msg("删除成功", {icon: 1});
+                                layer.msg("删除成功");
                                 obj.del();
                             }
                         });
+                        obj.del();
                         layer.close(index);
                     });
                 } else if (obj.event === 'modify') {

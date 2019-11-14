@@ -22,6 +22,7 @@ public class ExcelServiceImpl implements ExcelService {
     @Override
     public String list(HttpServletResponse response) {
         List<ChinaFight> chinaFights = chinaFightRepository.findAll();
+        System.out.println(chinaFights);
         try {
             // 设置响应输出的头类型及下载文件的默认名称
             String fileName = new String("demo信息表.xls".getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);

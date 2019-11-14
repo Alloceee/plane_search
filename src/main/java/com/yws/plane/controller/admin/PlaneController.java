@@ -30,8 +30,8 @@ public class PlaneController {
     }
 
     @PostMapping("/del")
-    public String del(String planes){
-        return planeService.del(planes);
+    public String del(String planes,Integer id){
+        return planeService.del(planes,id);
     }
 
     @PostMapping("/update")

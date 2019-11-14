@@ -1,12 +1,24 @@
 package com.yws.plane.util;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 短信发送工具类
+ */
 public class MessageUtil {
-    public static void main(String[] args) {
+
+    /**
+     * 验证码发送
+     *
+     * @param phone 手机号
+     * @param code  验证码
+     * @return
+     */
+    public static String sendCode(String phone, Integer code) {
         String host = "http://yzxyzm.market.alicloudapi.com";
         String path = "/yzx/verifySms";
         String method = "POST";
@@ -15,11 +27,10 @@ public class MessageUtil {
         //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
         headers.put("Authorization", "APPCODE " + appcode);
         Map<String, String> querys = new HashMap<String, String>();
-        querys.put("phone", "135XXXX9999");
+        querys.put("phone", phone);
         querys.put("templateId", "TP18040314");
-        querys.put("variable", "code:1234");
+        querys.put("variable", "code:" + code);
         Map<String, String> bodys = new HashMap<String, String>();
-
 
         try {
             /**
@@ -32,11 +43,12 @@ public class MessageUtil {
              * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
              */
             HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
-            System.out.println(response.toString());
+            return EntityUtils.toString(response.getEntity());
             //获取response的body
             //System.out.println(EntityUtils.toString(response.getEntity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

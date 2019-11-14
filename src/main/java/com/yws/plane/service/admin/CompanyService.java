@@ -29,7 +29,7 @@ public interface CompanyService {
      * @param companies 多条公司信息
      * @return
      */
-    String del(String companies);
+    String del(String companies,Integer id);
 
     /**
      * 更新

@@ -6,6 +6,7 @@ import com.yws.plane.repository.CompanyRepository;
 import com.yws.plane.service.admin.CompanyService;
 import com.yws.plane.util.FileUploadUtils;
 import com.yws.plane.util.JSONData;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class CompanyServiceImpl implements CompanyService {
 //        if (key != null) {
 ////            companies = companyRepository.findByNameLikeOrDescriptionLike(key);
 //        } else {
-            companies = companyRepository.findAll();
+        companies = companyRepository.findAll();
 //        }
         return JSONData.toJsonString(0, "", companies.size(), companies);
     }
@@ -51,11 +52,15 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public String del(String companies) {
-        JSONArray array = JSONArray.parseArray(companies);
-        List<Company> companies1 = array.toJavaList(Company.class);
+    public String del(String companies, Integer id) {
         //批量删除
-        companyRepository.deleteInBatch(companies1);
+        if (!StringUtils.isEmpty(companies)) {
+            JSONArray array = JSONArray.parseArray(companies);
+            List<Company> companies1 = array.toJavaList(Company.class);
+            companyRepository.deleteInBatch(companies1);
+        } else {
+            companyRepository.deleteById(id);
+        }
         return JSONData.toJsonString(0, "", "");
     }
 

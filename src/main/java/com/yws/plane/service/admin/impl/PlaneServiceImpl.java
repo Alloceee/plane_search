@@ -6,6 +6,7 @@ import com.yws.plane.entity.Plane;
 import com.yws.plane.repository.PlaneRepository;
 import com.yws.plane.service.admin.PlaneService;
 import com.yws.plane.util.JSONData;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class PlaneServiceImpl implements PlaneService {
     private PlaneRepository planeRepository;
 
     @Override
-    public String add(Plane plane,Integer companyId) {
+    public String add(Plane plane, Integer companyId) {
         Company company = new Company();
         company.setId(companyId);
         plane.setCompany(company);
@@ -48,12 +49,15 @@ public class PlaneServiceImpl implements PlaneService {
     }
 
     @Override
-    public String del(String planes) {
-        JSONArray array = JSONArray.parseArray(planes);
-        List<Plane> planes1 = array.toJavaList(Plane.class);
-        System.out.println(planes1);
+    public String del(String planes, Integer id) {
         //批量删除
-        planeRepository.deleteInBatch(planes1);
+        if (!StringUtils.isEmpty(planes)) {
+            JSONArray array = JSONArray.parseArray(planes);
+            List<Plane> planes1 = array.toJavaList(Plane.class);
+            planeRepository.deleteInBatch(planes1);
+        } else {
+            planeRepository.deleteById(id);
+        }
         return JSONData.toJsonString(0, "", "");
     }
 

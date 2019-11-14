@@ -39,8 +39,8 @@ public class CompanyController {
     }
 
     @PostMapping("/del")
-    public String del(String companies) {
-        return companyService.del(companies);
+    public String del(String companies,Integer id) {
+        return companyService.del(companies,id);
     }
 
     @PostMapping("/update")

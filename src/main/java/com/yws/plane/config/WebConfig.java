@@ -2,14 +2,12 @@ package com.yws.plane.config;
 
 import com.yws.plane.interceptor.AuthorityInterceptor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author AlmostLover
  */
-@Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
@@ -20,7 +18,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/")
                 .excludePathPatterns("/china_plane")
                 .excludePathPatterns("/abroad_plane")
-                .excludePathPatterns("/search");
+                .excludePathPatterns("/search")
+                .excludePathPatterns("*.js")
+                .excludePathPatterns("*.css");
     }
 
     @Bean

@@ -1,20 +1,18 @@
 package com.yws.plane.service.admin;
 
-import com.yws.plane.entity.Message;
+import com.yws.plane.entity.Task;
 
 /**
- * @Author: yewenshu https://github.com/Alloceee
- * @Date: 2019/11/10 15:21
- * @Project: plane_search
+ * 定时器管理
  */
-public interface MessageService {
+public interface TaskService {
     /**
      * 记录短信提醒的用户信息
      *
-     * @param message
+     * @param task
      * @return
      */
-    String add(Message message);
+    String add(Task task);
 
     String show();
 
@@ -29,8 +27,8 @@ public interface MessageService {
 
     /**
      * 更新
-     * @param message
+     * @param task
      * @return
      */
-    String update(Message message);
+    String update(Task task);
 }

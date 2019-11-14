@@ -9,7 +9,7 @@ public interface PlaneService {
 
     String one(Integer id);
 
-    String del(String planes);
+    String del(String planes,Integer id);
 
     String update(Plane plane);
 
