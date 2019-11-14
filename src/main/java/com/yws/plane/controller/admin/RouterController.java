@@ -43,9 +43,14 @@ public class RouterController {
         return "admin/fight/add";
     }
 
-    @GetMapping("/fight/show")
-    public String fightShow() {
-        return "admin/fight/show";
+    @GetMapping("/chinaFight/show")
+    public String chinaFightShow() {
+        return "admin/fight/china";
+    }
+
+    @GetMapping("/abroadFight/show")
+    public String abroadFightShow() {
+        return "admin/fight/abroad";
     }
 
     @GetMapping("/news/add")
