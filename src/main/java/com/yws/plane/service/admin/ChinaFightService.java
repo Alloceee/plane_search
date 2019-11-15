@@ -11,7 +11,7 @@ public interface ChinaFightService {
 
     String one(Long id);
 
-    String del(String chinaFights);
+    String del(String fights,Long id);
 
     String update(ChinaFight chinaFight);
 

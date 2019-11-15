@@ -33,8 +33,8 @@ public class AbroadFightController {
     }
 
     @GetMapping("/del")
-    public String del(String abroadFights) {
-        return abroadFightService.del(abroadFights);
+    public String del(String fights,Long id) {
+        return abroadFightService.del(fights,id);
     }
 
     @PostMapping("/update")

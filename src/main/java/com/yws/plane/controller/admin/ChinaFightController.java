@@ -1,9 +1,7 @@
 package com.yws.plane.controller.admin;
 
 import com.yws.plane.entity.ChinaFight;
-import com.yws.plane.entity.Plane;
 import com.yws.plane.service.admin.ChinaFightService;
-import com.yws.plane.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +33,8 @@ public class ChinaFightController {
     }
 
     @GetMapping("/del")
-    public String del(String chinaFights) {
-        return chinaFightService.del(chinaFights);
+    public String del(String fights,Long id) {
+        return chinaFightService.del(fights,id);
     }
 
     @PostMapping("/update")

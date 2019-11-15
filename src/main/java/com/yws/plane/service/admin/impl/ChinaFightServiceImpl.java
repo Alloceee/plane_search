@@ -7,12 +7,11 @@ import com.yws.plane.repository.ChinaFightRepository;
 import com.yws.plane.service.admin.ChinaFightService;
 import com.yws.plane.util.JSONData;
 import com.yws.plane.util.TimeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static com.yws.plane.util.BeanUtils.getNullPropertyNames;
@@ -38,11 +37,15 @@ public class ChinaFightServiceImpl implements ChinaFightService {
     }
 
     @Override
-    public String del(String chinaFights) {
-        JSONArray array = JSONArray.parseArray(chinaFights);
-        List<ChinaFight> chinaFights1 = array.toJavaList(ChinaFight.class);
-        //批量删除
-        chinaFightRepository.deleteInBatch(chinaFights1);
+    public String del(String fights,Long id) {
+        if(!StringUtils.isEmpty(fights)){
+            JSONArray array = JSONArray.parseArray(fights);
+            List<ChinaFight> chinaFights1 = array.toJavaList(ChinaFight.class);
+            //批量删除
+            chinaFightRepository.deleteInBatch(chinaFights1);
+        }else{
+            chinaFightRepository.deleteById(id);
+        }
         return JSONData.toJsonString(0, "", "");
     }
 

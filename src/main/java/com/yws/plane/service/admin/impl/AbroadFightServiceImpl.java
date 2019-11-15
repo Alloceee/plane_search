@@ -7,6 +7,7 @@ import com.yws.plane.repository.AbroadFightRepository;
 import com.yws.plane.service.admin.AbroadFightService;
 import com.yws.plane.util.JSONData;
 import com.yws.plane.util.TimeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,11 +37,15 @@ public class AbroadFightServiceImpl implements AbroadFightService {
     }
 
     @Override
-    public String del(String chinaFights) {
-        JSONArray array = JSONArray.parseArray(chinaFights);
-        List<AbroadFight> abroadFights = array.toJavaList(AbroadFight.class);
-        //批量删除
-        abroadFightRepository.deleteInBatch(abroadFights);
+    public String del(String fights, Long id) {
+        if (!StringUtils.isEmpty(fights)) {
+            JSONArray array = JSONArray.parseArray(fights);
+            List<AbroadFight> abroadFights = array.toJavaList(AbroadFight.class);
+            //批量删除
+            abroadFightRepository.deleteInBatch(abroadFights);
+        } else {
+            abroadFightRepository.deleteById(id);
+        }
         return JSONData.toJsonString(0, "", "");
     }
 
