@@ -55,6 +55,7 @@ public class ChinaFight implements Serializable {
      */
     @Column(nullable = false, columnDefinition = "datetime comment '起飞时间'")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "开始日期" ,orderNum = "3",importFormat = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
 
     /**
@@ -62,6 +63,7 @@ public class ChinaFight implements Serializable {
      */
     @Column(nullable = false, columnDefinition = "datetime comment '抵达时间'")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "开始日期" ,orderNum = "3",importFormat = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     /**

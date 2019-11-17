@@ -1,11 +1,20 @@
 package com.yws.plane.controller.admin;
 
 //import com.yws.plane.elasticsearch.CompanyElasticRepository;
+
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
+import com.yws.plane.entity.Com;
 import com.yws.plane.entity.Company;
 import com.yws.plane.service.admin.CompanyService;
+import com.yws.plane.util.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author AlmostLover
@@ -39,8 +48,8 @@ public class CompanyController {
     }
 
     @PostMapping("/del")
-    public String del(String companies,Integer id) {
-        return companyService.del(companies,id);
+    public String del(String companies, Integer id) {
+        return companyService.del(companies, id);
     }
 
     @PostMapping("/update")
@@ -56,5 +65,11 @@ public class CompanyController {
 //        Page<Com> company = companyElasticRepository.search(builder.build());
 //        return JSONData.toJsonString(0, "", company);
 //    }
+
+    @PostMapping("/import")
+    public String importExcel(@RequestParam("file") MultipartFile file) {
+        List<Company> companies = ExcelUtil.importExcel(file,1,1,Company.class);
+        return companies.toString();
+    }
 
 }

@@ -1,10 +1,8 @@
 package com.yws.plane.service.admin.impl;
 
 import com.alibaba.fastjson.JSONArray;
-import com.yws.plane.entity.Company;
 import com.yws.plane.entity.Message;
 import com.yws.plane.repository.MessageRepository;
-import com.yws.plane.repository.NewsRepository;
 import com.yws.plane.service.admin.MessageService;
 import com.yws.plane.util.JSONData;
 import org.springframework.beans.BeanUtils;

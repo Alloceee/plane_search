@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>后台管理</title>
+    <title>国外航班信息</title>
     <link rel="stylesheet" href="/plugins/layui/css/layui.css">
     <link rel="stylesheet" id="css-main" href="/css/oneui.css">
 </head>
@@ -92,7 +92,7 @@
 
         table.render({
             elem: '#test'
-            , url: '/admin/fight/show'
+            , url: '/admin/fight/abroad/show'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print']
             , title: '用户数据表'
@@ -126,7 +126,7 @@
                         },
                         dataType: 'json',
                         type: 'post',
-                        url: '/admin/company/del',
+                        url: '/admin/fight/abroad/del',
                         success: function () {
                             layer.msg("删除成功");
                             checkStatus.del();
@@ -148,7 +148,7 @@
                         },
                         dataType: 'json',
                         type: 'post',
-                        url: '/admin/company/del',
+                        url: '/admin/fight/abroad/del',
                         success: function () {
                             layer.msg("删除成功");
                             obj.del();

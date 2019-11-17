@@ -7,7 +7,7 @@ import com.yws.plane.repository.ChinaFightRepository;
 import com.yws.plane.service.admin.ChinaFightService;
 import com.yws.plane.util.JSONData;
 import com.yws.plane.util.TimeUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

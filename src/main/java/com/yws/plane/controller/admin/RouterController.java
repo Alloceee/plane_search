@@ -23,6 +23,11 @@ public class RouterController {
         return "admin/company/add";
     }
 
+    @GetMapping("/company/import")
+    public String importExcel(){
+        return "admin/company/file";
+    }
+
     @GetMapping("/company/show")
     public String companyShow() {
         return "admin/company/show";
