@@ -1,6 +1,7 @@
-layui.use('laytpl', function () {
+layui.use(['laytpl', 'layer'], function () {
     var laytpl = layui.laytpl,
-        $ = layui.jquery;
+        $ = layui.jquery,
+        layer = layui.layer;
 
     //页面数据初始化
     var data_init = {
@@ -16,11 +17,12 @@ layui.use('laytpl', function () {
                     endCity: '深圳'
                 },
                 url: '/china_plane',
-                success: function (data) {
+                success: function (res) {
+                    console.log(JSON.parse(res).data);
                     //渲染模板数据
                     var getTpl = china_plane.innerHTML
                         , view = document.getElementById('china_plane_show');
-                    laytpl(getTpl).render(JSON.parse(data), function (html) {
+                    laytpl(getTpl).render(JSON.parse(res).data, function (html) {
                         view.innerHTML = html;
                     });
                 }
@@ -35,11 +37,11 @@ layui.use('laytpl', function () {
                     endCity: '深圳'
                 },
                 url: '/abroad_plane',
-                success: function (data) {
+                success: function (res) {
                     //渲染模板数据
                     var getTpl = abroad_plane.innerHTML
                         , view = document.getElementById('abroad_plane_show');
-                    laytpl(getTpl).render(JSON.parse(data), function (html) {
+                    laytpl(getTpl).render(JSON.parse(res).data, function (html) {
                         view.innerHTML = html;
                     });
                 }
@@ -94,6 +96,25 @@ layui.use('laytpl', function () {
         }
     };
 
+    //展示详情
+    var des = {
+        china: function () {
+            $('#china_plane_show').on('click', '.block', function () {
+                //捕获页
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    area: ['420px', '240px'], //宽高
+                    content: $(this).find('.china_des').html() //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            })
+        },
+        abroad: function () {
+
+        }
+    };
+
     var init = function () {
         data_init.plugins_init();
         data_init.china_plane();
@@ -102,6 +123,8 @@ layui.use('laytpl', function () {
         change.abroad_change();
         search.china_search();
         search.abroad_search();
+        des.china();
+        des.abroad();
     };
 
     $(function () {

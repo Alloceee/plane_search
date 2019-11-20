@@ -2,10 +2,6 @@ package com.yws.plane.controller.admin;
 
 //import com.yws.plane.elasticsearch.CompanyElasticRepository;
 
-import cn.afterturn.easypoi.excel.ExcelImportUtil;
-import cn.afterturn.easypoi.excel.entity.ImportParams;
-import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
-import com.yws.plane.entity.Com;
 import com.yws.plane.entity.Company;
 import com.yws.plane.service.admin.CompanyService;
 import com.yws.plane.util.ExcelUtil;
@@ -13,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
