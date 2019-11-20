@@ -140,6 +140,13 @@
             <version>3.0.3</version>
         </dependency>
         <!--    excel   end -->
+        <!--    csv start     -->
+        <dependency>
+            <groupId>net.sourceforge.javacsv</groupId>
+            <artifactId>javacsv</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <!--   csv end     -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

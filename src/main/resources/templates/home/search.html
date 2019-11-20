@@ -20,6 +20,7 @@
     <div th:replace="/home/comm/search :: search"></div>
     <!-- 搜索区域 end -->
 
+    <input type="hidden" th:value="${chinaFight}" id="chinaFight">
     <div data-role="search_show">
         <div class="content-grid push-50">
             <!-- Simple Tiles -->
@@ -168,18 +169,44 @@
 <script src="/plugins/slick/slick.min.js"></script>
 
 <script>
-    $(function () {
-        // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-        App.initHelpers(['datepicker', 'slick']);
-        $('#china_change').on('click', function () {
-            var china_start = $("#china_start").val();
-            $("#china_start").val($('#china_end').val());
-            $("#china_end").val(china_start);
-        });
-        $('#abroad_change').on('click', function () {
-            var abroad_start = $("#abroad_start").val();
-            $("#abroad_start").val($('#abroad_end').val());
-            $("#abroad_end").val(abroad_start);
+    layui.use(['laytpl', 'layer'], function () {
+        var laytpl = layui.laytpl,
+            $ = layui.jquery,
+            layer = layui.layer;
+        var data = $('#chinaFight').val();
+        $(function () {
+            // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
+            App.initHelpers(['datepicker', 'slick']);
+            var data_init = {
+                china_plane: function () {
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'text',
+                        data: data,
+                        url: '/search',
+                        success: function (res) {
+                            console.log(res);
+                            // //渲染模板数据
+                            // var getTpl = china_plane.innerHTML
+                            //     , view = document.getElementById('china_plane_show');
+                            // laytpl(getTpl).render(JSON.parse(res).data, function (html) {
+                            //     view.innerHTML = html;
+                            // });
+                        }
+                    });
+                },
+            };
+            data_init.china_plane();
+            $('#china_change').on('click', function () {
+                var china_start = $("#china_start").val();
+                $("#china_start").val($('#china_end').val());
+                $("#china_end").val(china_start);
+            });
+            $('#abroad_change').on('click', function () {
+                var abroad_start = $("#abroad_start").val();
+                $("#abroad_start").val($('#abroad_end').val());
+                $("#abroad_end").val(abroad_start);
+            });
         });
     });
 </script>

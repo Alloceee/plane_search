@@ -18,7 +18,6 @@ layui.use(['laytpl', 'layer'], function () {
                 },
                 url: '/china_plane',
                 success: function (res) {
-                    console.log(JSON.parse(res).data);
                     //渲染模板数据
                     var getTpl = china_plane.innerHTML
                         , view = document.getElementById('china_plane_show');
@@ -84,8 +83,7 @@ layui.use(['laytpl', 'layer'], function () {
     var search = {
         china_search: function () {
             $('#china_search').on('click', function () {
-                var data = $('#china_form').serializeArray();
-                console.log(data);
+                $('#china_form').submit();
             });
         },
         abroad_search: function () {
@@ -105,13 +103,22 @@ layui.use(['laytpl', 'layer'], function () {
                     type: 1,
                     shade: false,
                     title: false, //不显示标题
-                    area: ['420px', '240px'], //宽高
+                    area: ['430px', '240px'], //宽高
                     content: $(this).find('.china_des').html() //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
                 });
             })
         },
         abroad: function () {
-
+            $('#abroad_plane_show').on('click', '.block', function () {
+                //捕获页
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    area: ['430px', '240px'], //宽高
+                    content: $(this).find('.abroad_des').html() //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            })
         }
     };
 

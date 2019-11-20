@@ -5,12 +5,14 @@ import com.yws.plane.entity.ChinaFight;
 import com.yws.plane.entity.Plane;
 import com.yws.plane.repository.ChinaFightRepository;
 import com.yws.plane.service.admin.ChinaFightService;
+import com.yws.plane.util.ExcelUtil;
 import com.yws.plane.util.JSONData;
 import com.yws.plane.util.TimeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -74,5 +76,16 @@ public class ChinaFightServiceImpl implements ChinaFightService {
             return JSONData.toJsonString(0, "添加成功", "");
         }
         return JSONData.toJsonString(1, "添加失败", "");
+    }
+
+    @Override
+    public String importExcel(MultipartFile file, Integer title) {
+        List<ChinaFight> chinaFights = ExcelUtil.importExcel(file, title, 1, ChinaFight.class);
+        try {
+            chinaFightRepository.saveAll(chinaFights);
+        } catch (Exception e) {
+            return JSONData.toJsonString(1, "导入失败(请检查格式是否正确)", "");
+        }
+        return JSONData.toJsonString(0, "导入成功", "");
     }
 }

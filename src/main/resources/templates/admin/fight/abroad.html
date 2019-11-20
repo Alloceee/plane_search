@@ -100,14 +100,20 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
-                    , {field: 'name', title: '客机型号', width: 120, edit: 'text', sort: true, event: 'setName'}
-                    , {field: 'description', title: '起飞城市', edit: 'text', event: 'setDes'}
-                    , {field: 'icon', title: '起飞机场', width: 100}
-                    , {field: 'icon', title: '起飞时间', width: 100}
-                    , {field: 'icon', title: '抵达城市', width: 100}
-                    , {field: 'icon', title: '抵达机场', width: 100}
-                    , {field: 'icon', title: '抵达时间', width: 100}
-                    , {field: 'icon', title: '价格', width: 100}
+                    , {
+                    field: 'number', title: '客机型号', width: 120, edit: 'text', sort: true, event: 'setName'
+                    , templet: function (d) {
+                        console.log(d);
+                        return d.plane.number;
+                    }
+                }
+                    , {field: 'startCity', title: '起飞城市', edit: 'text', event: 'setDes'}
+                    , {field: 'startAirport', title: '起飞机场', width: 100}
+                    , {field: 'startTime', title: '起飞时间', width: 100}
+                    , {field: 'endCity', title: '抵达城市', width: 100}
+                    , {field: 'endAirport', title: '抵达机场', width: 100}
+                    , {field: 'endTime', title: '抵达时间', width: 100}
+                    , {field: 'price', title: '价格', width: 100}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
                 ]
             ]

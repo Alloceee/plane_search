@@ -46,7 +46,7 @@ html,body{
 
 /* 搜索框 */
 .search-container input {
-	font-family: "微软雅黑";
+	font-family: "微软雅黑", serif;
 	position: absolute;
 	right: 250px;
 	top: 50px;
@@ -232,6 +232,7 @@ html,body{
 .error{
 	color: #BF0910;
 }
+/* footer */
 .footer-bottom{
 	background: white;
 	min-height: 150px;
@@ -244,4 +245,12 @@ html,body{
 }
 .footer-bottom a:hover{
 	text-decoration: underline;
+}
+/* 展示详情弹框 */
+.des_show{
+	margin-top: 20px;
+}
+.des_show span {
+	display: block;
+	margin: 7px 0;
 }

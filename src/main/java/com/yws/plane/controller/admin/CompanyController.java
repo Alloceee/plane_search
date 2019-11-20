@@ -4,12 +4,9 @@ package com.yws.plane.controller.admin;
 
 import com.yws.plane.entity.Company;
 import com.yws.plane.service.admin.CompanyService;
-import com.yws.plane.util.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 /**
  * @author AlmostLover
@@ -62,9 +59,8 @@ public class CompanyController {
 //    }
 
     @PostMapping("/import")
-    public String importExcel(@RequestParam("file") MultipartFile file) {
-        List<Company> companies = ExcelUtil.importExcel(file,1,1,Company.class);
-        return companies.toString();
+    public String importExcel(@RequestParam("file") MultipartFile file,Integer title) {
+        return companyService.importExcel(file, title);
     }
 
 }

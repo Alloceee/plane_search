@@ -26,27 +26,28 @@ public class ChinaFight implements Serializable {
     /**
      * 始发地
      */
-    @Excel(name = "startCity", width = 25, orderNum = "0")
+    @Excel(name = "startCity", width = 25, orderNum = "1")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '始发地'")
     private String startCity;
 
     /**
      * 目的地
      */
-    @Excel(name = "endCity", width = 25, orderNum = "0")
+    @Excel(name = "endCity", width = 25, orderNum = "2")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '目的地'")
     private String endCity;
 
     /**
      * 始发机场
      */
-    @Excel(name = "startAirport", width = 25, orderNum = "0")
+    @Excel(name = "startAirport", width = 25, orderNum = "3")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '始发机场'")
     private String startAirport;
 
     /**
      * 目的机场
      */
+    @Excel(name = "endAirport", orderNum = "4")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '目的机场'")
     private String endAirport;
 
@@ -55,7 +56,7 @@ public class ChinaFight implements Serializable {
      */
     @Column(nullable = false, columnDefinition = "datetime comment '起飞时间'")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "开始日期" ,orderNum = "3",importFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "开始日期", orderNum = "5", importFormat = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
 
     /**
@@ -63,7 +64,7 @@ public class ChinaFight implements Serializable {
      */
     @Column(nullable = false, columnDefinition = "datetime comment '抵达时间'")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "开始日期" ,orderNum = "3",importFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "开始日期", orderNum = "6", importFormat = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     /**
@@ -71,11 +72,13 @@ public class ChinaFight implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "plane_id", nullable = false, columnDefinition = "int(255) comment '所属航班'")
+    @Excel(name = "plane_id", orderNum = "7")
     private Plane plane;
 
     /**
      * 价格
      */
+    @Excel(name = "price", orderNum = "8")
     @Column(nullable = false, columnDefinition = "float(10, 2) comment '价格'")
     private Float price;
 

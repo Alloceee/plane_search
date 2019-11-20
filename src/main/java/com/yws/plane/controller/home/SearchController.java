@@ -6,7 +6,6 @@ import com.yws.plane.service.home.SearchService;
 import com.yws.plane.util.JSONData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,9 +30,9 @@ public class SearchController {
         return JSONData.toJsonString(0,"",abroadFights);
     }
 
-    @RequestMapping("/search")
-    public String search() {
-        return "home/search";
+    @GetMapping("/search")
+    public String search(ChinaFight chinaFight) {
+        return chinaFight.toString();
     }
 
 }

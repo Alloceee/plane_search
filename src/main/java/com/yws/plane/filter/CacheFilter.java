@@ -34,7 +34,7 @@ public class CacheFilter implements Filter, ApplicationContextAware {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
 
         // 如果不是访问主页，放行
-        if (false == req.getRequestURI().equals("/")) {
+        if (!req.getRequestURI().equals("/")) {
             filterChain.doFilter(servletRequest, resp);
             return;
         }

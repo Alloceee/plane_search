@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.yws.plane.entity.Company;
 import com.yws.plane.repository.CompanyRepository;
 import com.yws.plane.service.admin.CompanyService;
+import com.yws.plane.util.ExcelUtil;
 import com.yws.plane.util.FileUploadUtils;
 import com.yws.plane.util.JSONData;
 import org.apache.commons.lang3.StringUtils;
@@ -92,5 +93,14 @@ public class CompanyServiceImpl implements CompanyService {
         return JSONData.toJsonString(1, "图标上传失败", "");
     }
 
-
+    @Override
+    public String importExcel(MultipartFile file, Integer title) {
+        List<Company> companies = ExcelUtil.importExcel(file, title, 1, Company.class);
+        try {
+            companyRepository.saveAll(companies);
+        } catch (Exception e) {
+            return JSONData.toJsonString(1, "导入失败(请检查格式是否正确)", "");
+        }
+        return JSONData.toJsonString(0, "导入成功", "");
+    }
 }

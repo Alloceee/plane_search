@@ -45,28 +45,30 @@
                             </div>
                         </div>
                         <div class="china_des" hidden="hidden">
-                            <div class="block-content block-content-full clearfix">
+                            <div class="block-content block-content-full clearfix des_show">
                                 <div class="col-sm-8">
                                     <div class="col-sm-12">
-                                        <span class="text-muted">起飞机场：{{ item.startAirport }}</span>
-                                        <span class="text-muted">抵达机场：{{ item.endAirport }}</span>
+                                        <span class="h5 text-muted">起飞机场：{{ item.startAirport }}</span>
+                                        <span class="h5 text-muted">抵达机场：{{ item.endAirport }}</span>
                                     </div>
                                     <div class="col-sm-12">
-                                        <span class="h4 font-w700">{{ item.plane.number }}</span>
-                                        <span class="h4 font-w700">{{ item.plane.model }}</span>
+                                        <span class="h5 font-w400">客机序号：{{ item.plane.number }}</span>
+                                        <span class="h5 font-w400">客机机型：{{ item.plane.model }}</span>
                                     </div>
-                                    {{# if(item.plane.type === 0){ }}
-                                    <span class="h4 font-w700">小型</span>
-                                    {{# }elseif(item.plane.type === 1){  }}
-                                    <span class="h4 font-w700">中型</span>
-                                    {{# }elseif(item.plane.type === 2){  }}
-                                    <span class="h4 font-w700">大型</span>
-                                    {{# } }}
+                                    <div class="col-sm-12">
+                                        {{# if(item.plane.type === 0){ }}
+                                        <span class="h5 font-w400">客机型号：小型</span>
+                                        {{# }if(item.plane.type === 1){ }}
+                                        <span class="h5 font-w400">客机型号：中型</span>
+                                        {{# }if(item.plane.type === 2){ }}
+                                        <span class="h5 font-w400">客机型号：大型</span>
+                                        {{# } }}
+                                    </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <span class="h3 font-w700 text-city">{{ item.plane.company.name }}</span>
                                     <img th:width="80" src="http://www.yewenshu.top/{{ item.plane.company.icon }}"
-                                    alt="http://www.yewenshu.top/{{ item.plane.company.icon }}"/>
+                                         alt="http://www.yewenshu.top/{{ item.plane.company.icon }}"/>
                                     <span class="text-muted">{{ item.plane.company.description }}</span>
                                 </div>
                             </div>
@@ -108,6 +110,35 @@
                             </div>
                             <div class="col-sm-4">
                                 <span class="h2 font-w700 text-city">￥{{ item.price }}</span>
+                            </div>
+                        </div>
+                        <div class="abroad_des" hidden="hidden">
+                            <div class="block-content block-content-full clearfix des_show">
+                                <div class="col-sm-8">
+                                    <div class="col-sm-12">
+                                        <span class="h5 text-muted">起飞机场：{{ item.startAirport }}</span>
+                                        <span class="h5 text-muted">抵达机场：{{ item.endAirport }}</span>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <span class="h5 font-w400">客机序号：{{ item.plane.number }}</span>
+                                        <span class="h5 font-w400">客机机型：{{ item.plane.model }}</span>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        {{# if(item.plane.type === 0){ }}
+                                        <span class="h5 font-w400">客机型号：小型</span>
+                                        {{# }if(item.plane.type === 1){ }}
+                                        <span class="h5 font-w400">客机型号：中型</span>
+                                        {{# }if(item.plane.type === 2){ }}
+                                        <span class="h5 font-w400">客机型号：大型</span>
+                                        {{# } }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="h3 font-w700 text-city">{{ item.plane.company.name }}</span>
+                                    <img th:width="80" src="http://www.yewenshu.top/{{ item.plane.company.icon }}"
+                                         alt="http://www.yewenshu.top/{{ item.plane.company.icon }}"/>
+                                    <span class="text-muted">{{ item.plane.company.description }}</span>
+                                </div>
                             </div>
                         </div>
                     </a>
