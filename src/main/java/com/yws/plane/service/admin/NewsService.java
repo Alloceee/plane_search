@@ -20,7 +20,7 @@ public interface NewsService {
      *
      * @return
      */
-    String show();
+    String show(String key);
 
     /**
      * 根据id查询某条公司信息

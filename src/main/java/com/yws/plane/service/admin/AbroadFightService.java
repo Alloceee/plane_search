@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface AbroadFightService {
 
-    String show();
+    String show(String key);
 
     String one(Long id);
 

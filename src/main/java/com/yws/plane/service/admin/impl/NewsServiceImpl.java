@@ -1,6 +1,7 @@
 package com.yws.plane.service.admin.impl;
 
 import com.alibaba.fastjson.JSONArray;
+import com.yws.plane.entity.Company;
 import com.yws.plane.entity.News;
 import com.yws.plane.repository.NewsRepository;
 import com.yws.plane.service.admin.NewsService;
@@ -33,8 +34,14 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public String show() {
-        List<News> news = newsRepository.findAll();
+    public String show(String key) {
+        List<News> news;
+        if (key != null) {
+            news = newsRepository.findByTitleLikeOrContentLikeOrCreateTimeLike('%'+key+'%', '%'+key+'%', '%'+key+'%');
+            System.out.println(news);
+        } else {
+            news = newsRepository.findAll();
+        }
         return JSONData.toJsonString(0, "", news.size(), news);
     }
 

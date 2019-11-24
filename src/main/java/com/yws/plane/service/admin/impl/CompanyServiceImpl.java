@@ -38,11 +38,12 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public String show(String key) {
         List<Company> companies;
-//        if (key != null) {
-////            companies = companyRepository.findByNameLikeOrDescriptionLike(key);
-//        } else {
-        companies = companyRepository.findAll();
-//        }
+        if (key != null) {
+            companies = companyRepository.findByNameLikeOrDescriptionLike('%'+key+'%', '%'+key+'%');
+            System.out.println(companies);
+        } else {
+            companies = companyRepository.findAll();
+        }
         return JSONData.toJsonString(0, "", companies.size(), companies);
     }
 

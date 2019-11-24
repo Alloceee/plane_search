@@ -21,14 +21,14 @@
         <div class="block-content tab-content">
             <div class="tab-pane active" id="btabs-static-justified-home">
                 <form id="china_form" action="/search" method="post">
-                    <div class="col-sm-12">
-                        <label class="css-input css-radio css-radio-info push-10-r">
-                            <input type="radio" name="china-type" checked=""><span></span>单程
-                        </label>
-                        <label class="css-input css-radio css-radio-info">
-                            <input type="radio" name="china-type"><span></span>往返
-                        </label>
-                    </div>
+<!--                    <div class="col-sm-12">-->
+<!--                        <label class="css-input css-radio css-radio-info push-10-r">-->
+<!--                            <input type="radio" name="china-type" checked=""><span></span>单程-->
+<!--                        </label>-->
+<!--                        <label class="css-input css-radio css-radio-info">-->
+<!--                            <input type="radio" name="china-type"><span></span>往返-->
+<!--                        </label>-->
+<!--                    </div>-->
                     <div class="col-sm-6">
                         <a class="block block-link-hover3 search-box" href="javascript:void(0)">
                             <div class="block-content">
@@ -36,7 +36,7 @@
                                     <div class="col-sm-5">
                                         <div class="form-material">
                                             <h5 class="font-w300 push">出发地</h5>
-                                            <input type="text" id="china_start" value="" name="start_city" placeholder="可输入城市或机场"
+                                            <input type="text" id="china_start" value="" name="startCity" placeholder="可输入城市或机场"
                                                    class="form-control"/>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                                     <div class="col-sm-5">
                                         <div class="form-material">
                                             <h5 class="font-w300 push">目的地</h5>
-                                            <input type="text" id="china_end" value="" name="end_city" placeholder="可输入城市或机场"
+                                            <input type="text" id="china_end" value="" name="endCity" placeholder="可输入城市或机场"
                                                    class="form-control"/>
                                         </div>
                                     </div>
@@ -68,10 +68,10 @@
                                     <div class="col-md-12">
                                         <div class="input-daterange input-group" data-date-format="yyyy-mm-dd">
                                             <input class="form-control" type="text" id="china_start_time"
-                                                   name="start_time" placeholder="出发日期">
+                                                   name="startTime" placeholder="出发日期">
                                             <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                             <input class="form-control" type="text" id="china_end_time"
-                                                   name="end_time" placeholder="返回日期">
+                                                   name="endTime" placeholder="返回日期">
                                         </div>
                                     </div>
                                 </div>
@@ -82,18 +82,19 @@
                         <span class="btn btn-minw search-btn" type="button" id="china_search"><i
                                 class="fa fa-search">搜索</i></span>
                     </div>
+                    <input type="hidden" name="type" value="0">
                 </form>
             </div>
             <div class="tab-pane" id="btabs-static-justified-profile">
                 <form id="abroad_form" onsubmit="return false">
-                    <div class="col-sm-12">
-                        <label class="css-input css-radio css-radio-info push-10-r">
-                            <input type="radio" name="radio-group3" checked=""><span></span>单程
-                        </label>
-                        <label class="css-input css-radio css-radio-info">
-                            <input type="radio" name="radio-group3"><span></span>往返
-                        </label>
-                    </div>
+<!--                    <div class="col-sm-12">-->
+<!--                        <label class="css-input css-radio css-radio-info push-10-r">-->
+<!--                            <input type="radio" name="radio-group3" checked=""><span></span>单程-->
+<!--                        </label>-->
+<!--                        <label class="css-input css-radio css-radio-info">-->
+<!--                            <input type="radio" name="radio-group3"><span></span>往返-->
+<!--                        </label>-->
+<!--                    </div>-->
                     <div class="col-sm-6">
                         <a class="block block-link-hover3 search-box" href="javascript:void(0)">
                             <div class="block-content">
@@ -101,7 +102,7 @@
                                     <div class="col-sm-5">
                                         <div class="form-material">
                                             <h5 class="font-w300 push">出发地</h5>
-                                            <input type="text" id="abroad_start" value="" name="start_city" placeholder="可输入城市或机场"
+                                            <input type="text" id="abroad_start" value="" name="startCity" placeholder="可输入城市或机场"
                                                    class="form-control"/>
                                         </div>
                                     </div>
@@ -113,7 +114,7 @@
 
                                         <div class="form-material">
                                             <h5 class="font-w300 push">目的地</h5>
-                                            <input type="text" id="abroad_end" value="" name="ent_city" placeholder="可输入城市或机场"
+                                            <input type="text" id="abroad_end" value="" name="entCity" placeholder="可输入城市或机场"
                                                    class="form-control"/>
                                         </div>
                                     </div>
@@ -134,10 +135,10 @@
                                     <div class="col-md-12">
                                         <div class="input-daterange input-group" data-date-format="yyyy-mm-dd">
                                             <input class="form-control" type="text" id="example-daterange1"
-                                                   name="start_time" placeholder="出发日期">
+                                                   name="startTime" placeholder="出发日期">
                                             <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                             <input class="form-control" type="text" id="example-daterange2"
-                                                   name="ent_time" placeholder="返回日期">
+                                                   name="entTime" placeholder="返回日期">
                                         </div>
                                     </div>
                                 </div>
@@ -148,6 +149,7 @@
                     <span class="btn btn-minw search-btn" type="button" id="abroad_search"><i
                             class="fa fa-search">搜索</i></span>
                     </div>
+                    <input type="hidden" name="type" value="1">
                 </form>
             </div>
             <div class="tab-pane" id="btabs-static-justified-settings">

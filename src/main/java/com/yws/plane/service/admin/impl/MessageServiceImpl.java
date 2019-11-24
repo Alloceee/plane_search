@@ -1,6 +1,7 @@
 package com.yws.plane.service.admin.impl;
 
 import com.alibaba.fastjson.JSONArray;
+import com.yws.plane.entity.Company;
 import com.yws.plane.entity.Message;
 import com.yws.plane.repository.MessageRepository;
 import com.yws.plane.service.admin.MessageService;
@@ -33,8 +34,14 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public String show() {
-        List<Message> messages = messageRepository.findAll();
+    public String show(String key) {
+        List<Message> messages;
+        if (key != null) {
+            messages = messageRepository.findByPhoneLike('%'+key+'%');
+            System.out.println(messages);
+        } else {
+            messages = messageRepository.findAll();
+        }
         return JSONData.toJsonString(0, "", messages.size(), messages);
     }
 

@@ -16,7 +16,7 @@ public interface MessageService {
      */
     String add(Message message);
 
-    String show();
+    String show(String key);
 
     String one(Long id);
 

@@ -10,6 +10,5 @@ import java.util.List;
  * @author AlmostLover
  */
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
-//    @Query("select name,description from tb_company c where c.name like %?1% and c.description like %?1%")
-//    List<Company> findByNameLikeOrDescriptionLike(String key);
+    List<Company> findByNameLikeOrDescriptionLike(String key1,String key2);
 }

@@ -20,8 +20,8 @@ public class PlaneController {
     }
 
     @GetMapping("/all")
-    public String show(){
-        return planeService.show();
+    public String show(String key){
+        return planeService.show(key);
     }
 
     @GetMapping("/one")

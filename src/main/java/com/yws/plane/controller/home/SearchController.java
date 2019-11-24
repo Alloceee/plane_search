@@ -2,12 +2,15 @@ package com.yws.plane.controller.home;
 
 import com.yws.plane.entity.AbroadFight;
 import com.yws.plane.entity.ChinaFight;
+import com.yws.plane.entity.Fight;
 import com.yws.plane.service.home.SearchService;
 import com.yws.plane.util.JSONData;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -31,8 +34,9 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String search(ChinaFight chinaFight) {
-        return chinaFight.toString();
+    public String search(Fight fight) {
+        List<T> fights =  searchService.search(fight);
+        return JSONData.toJsonString(0,"",fights);
     }
 
 }

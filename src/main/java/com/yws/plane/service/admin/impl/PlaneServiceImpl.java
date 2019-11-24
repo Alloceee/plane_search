@@ -38,9 +38,14 @@ public class PlaneServiceImpl implements PlaneService {
     }
 
     @Override
-    public String show() {
-        List<Plane> planes = planeRepository.findAll();
-        System.out.println(planes);
+    public String show(String key) {
+        List<Plane> planes;
+        if (key != null) {
+            planes = planeRepository.findByCompany_IdLikeOrNumberLikeOrModelLike('%'+key+'%', '%'+key+'%', '%'+key+'%');
+            System.out.println(planes);
+        } else {
+            planes = planeRepository.findAll();
+        }
         return JSONData.toJsonString(0, "", planes.size(), planes);
     }
 

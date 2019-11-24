@@ -1,6 +1,5 @@
 package com.yws.plane.controller.admin;
 
-import com.yws.plane.entity.Company;
 import com.yws.plane.entity.Message;
 import com.yws.plane.service.admin.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,8 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public String show() {
-        return messageService.show();
+    public String show(String key) {
+        return messageService.show(key);
     }
 
     @GetMapping("/one")

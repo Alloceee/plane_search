@@ -3,6 +3,7 @@ package com.yws.plane.controller.home;
 import com.alibaba.fastjson.JSON;
 import com.yws.plane.entity.ChinaFight;
 import com.yws.plane.entity.Company;
+import com.yws.plane.entity.Fight;
 import com.yws.plane.repository.CompanyRepository;
 import com.yws.plane.service.QuartzTask;
 import com.yws.plane.util.ExcelUtil;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
-;
 
 /**
  * @author AlmostLover
@@ -49,9 +48,8 @@ public class IndexController {
     }
 
     @PostMapping("/search")
-    public String search(ChinaFight chinaFight, Model model) {
-        System.out.println(chinaFight);
-        model.addAttribute("chinaFight", JSON.toJSONString(chinaFight));
+    public String search(Fight fight, Model model) {
+        model.addAttribute("fight", JSON.toJSONString(fight));
         return "home/search";
     }
 }

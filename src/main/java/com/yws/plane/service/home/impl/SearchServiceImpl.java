@@ -2,9 +2,11 @@ package com.yws.plane.service.home.impl;
 
 import com.yws.plane.entity.AbroadFight;
 import com.yws.plane.entity.ChinaFight;
+import com.yws.plane.entity.Fight;
 import com.yws.plane.repository.AbroadFightRepository;
 import com.yws.plane.repository.ChinaFightRepository;
 import com.yws.plane.service.home.SearchService;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,17 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public String search(String startCity, String endCity, String startTime, String endTime) {
-        return null;
+    public <T> List<T> search(Fight fight) {
+        Integer type = fight.getType();
+        String startCity = fight.getStartCity();
+        String endCity = fight.getEndCity();
+        String startTime = fight.getStartTime();
+        String endTime = fight.getEndTime();
+        if (type == 0) {
+            return (List<T>) chinaFightRepository.findByStartCityAndEndCityAndStartTimeLikeAndEndTimeLike(startCity, endCity, startTime, endTime);
+        } else {
+            return (List<T>) abroadFightRepository.findByStartCityAndEndCityAndStartTimeLikeAndEndTimeLike(startCity, endCity, startTime, endTime);
+        }
     }
 
     @Override

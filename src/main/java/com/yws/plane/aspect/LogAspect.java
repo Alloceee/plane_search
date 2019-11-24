@@ -30,31 +30,31 @@ public class LogAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("execution(public * com.yws.plane.controller.home.*.*(..))")
-    public void webLog() {
-    }
+//    @Pointcut("execution(public * com.yws.plane.controller.home.*.*(..))")
+//    public void webLog() {
+//    }
 
-    @Before("webLog()")
-    public void doBefore(JoinPoint joinPoint) {
-        //接收到请求，记录请求内容
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        assert attributes != null;
-        HttpServletRequest request = attributes.getRequest();
-        Log log = new Log();
-        //请求url
-        log.setUrl(request.getRequestURL().toString());
-        //请求IP
-        log.setIp(request.getRemoteAddr());
-        //请求方法参数
-        log.setArgs(Arrays.toString(joinPoint.getArgs()));
-//        LOGGER.info("请求类方法 : "+joinPoint.getSignature())
-        System.out.println(log);
-        logRepository.save(log);
-    }
-
-    @AfterReturning(returning = "ret", pointcut = "webLog()")
-    public void doAfterReturning(Object ret) {
-        //处理完请求，返回内容
-//        LOGGER.info("REQUEST : "+ret);
-    }
+//    @Before("webLog()")
+//    public void doBefore(JoinPoint joinPoint) {
+//        //接收到请求，记录请求内容
+//        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+//        assert attributes != null;
+//        HttpServletRequest request = attributes.getRequest();
+//        Log log = new Log();
+//        //请求url
+//        log.setUrl(request.getRequestURL().toString());
+//        //请求IP
+//        log.setIp(request.getRemoteAddr());
+//        //请求方法参数
+//        log.setArgs(Arrays.toString(joinPoint.getArgs()));
+////        LOGGER.info("请求类方法 : "+joinPoint.getSignature())
+//        System.out.println(log);
+//        logRepository.save(log);
+//    }
+//
+//    @AfterReturning(returning = "ret", pointcut = "webLog()")
+//    public void doAfterReturning(Object ret) {
+//        //处理完请求，返回内容
+////        LOGGER.info("REQUEST : "+ret);
+//    }
 }

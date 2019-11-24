@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Key;
+
 /**
  * @Author: yewenshu https://github.com/Alloceee
  * @Date: 2019/11/9 21:49
@@ -25,8 +27,8 @@ public class NewsController {
     }
 
     @GetMapping("/all")
-    public String manage() {
-        return newsService.show();
+    public String manage(String Key) {
+        return newsService.show(Key);
     }
 
     @GetMapping("/one")

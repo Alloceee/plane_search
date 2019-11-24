@@ -2,6 +2,7 @@ package com.yws.plane.service.admin.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yws.plane.entity.AbroadFight;
+import com.yws.plane.entity.ChinaFight;
 import com.yws.plane.entity.Plane;
 import com.yws.plane.repository.AbroadFightRepository;
 import com.yws.plane.service.admin.AbroadFightService;
@@ -27,8 +28,15 @@ public class AbroadFightServiceImpl implements AbroadFightService {
     private AbroadFightRepository abroadFightRepository;
 
     @Override
-    public String show() {
-        List<AbroadFight> abroadFights = abroadFightRepository.findAll();
+    public String show(String key) {
+        List<AbroadFight> abroadFights;
+        if (key != null) {
+            abroadFights = abroadFightRepository.findByStartCityLikeOrEndCityLikeOrStartAirportLikeOrEndAirportOrStartTimeOrEndTimeOrPrice('%'+key+'%',
+                    '%'+key+'%', '%'+key+'%', '%'+key+'%', '%'+key+'%', '%'+key+'%', '%'+key+'%');
+            System.out.println(abroadFights);
+        } else {
+            abroadFights = abroadFightRepository.findAll();
+        }
         return JSONData.toJsonString(0, "", abroadFights.size(), abroadFights);
     }
 

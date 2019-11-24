@@ -27,8 +27,15 @@ public class ChinaFightServiceImpl implements ChinaFightService {
     private ChinaFightRepository chinaFightRepository;
 
     @Override
-    public String show() {
-        List<ChinaFight> chinaFights = chinaFightRepository.findAll();
+    public String show(String key) {
+        List<ChinaFight> chinaFights;
+        if (key != null) {
+            chinaFights = chinaFightRepository.findByStartCityLikeOrEndCityLikeOrStartAirportLikeOrEndAirportOrStartTimeOrEndTimeOrPrice('%'+key+'%',
+                    '%'+key+'%', '%'+key+'%', '%'+key+'%', '%'+key+'%', '%'+key+'%', '%'+key+'%');
+            System.out.println(chinaFights);
+        } else {
+            chinaFights = chinaFightRepository.findAll();
+        }
         return JSONData.toJsonString(0, "", chinaFights.size(), chinaFights);
     }
 

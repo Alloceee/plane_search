@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface PlaneService {
     String add(Plane plane,Integer companyId);
 
-    String show();
+    String show(String key);
 
     String one(Integer id);
 

@@ -23,8 +23,8 @@ public class AbroadFightController {
     }
 
     @GetMapping("/show")
-    public String show() {
-        return abroadFightService.show();
+    public String show(String key) {
+        return abroadFightService.show(key);
     }
 
     @GetMapping("/one")

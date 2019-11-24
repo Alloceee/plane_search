@@ -23,8 +23,8 @@ public class ChinaFightController {
     }
 
     @GetMapping("/show")
-    public String show() {
-        return chinaFightService.show();
+    public String show(String key) {
+        return chinaFightService.show(key);
     }
 
     @GetMapping("/one")

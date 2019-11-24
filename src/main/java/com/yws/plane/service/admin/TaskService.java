@@ -14,16 +14,16 @@ public interface TaskService {
      */
     String add(Task task);
 
-    String show();
+    String show(String key);
 
     String one(Long id);
 
     /**
      * 批量删除
-     * @param messages
+     * @param tasks
      * @return
      */
-    String del(String messages);
+    String del(String tasks,Long id);
 
     /**
      * 更新
