@@ -1,12 +1,24 @@
-layui.use(['laytpl', 'layer'], function () {
+layui.use(['laytpl', 'layer','laydate'], function () {
     var laytpl = layui.laytpl,
         $ = layui.jquery,
-        layer = layui.layer;
+        layer = layui.layer,
+        laydate = layui.laydate;
 
     //页面数据初始化
     var data_init = {
         plugins_init: function () {
-            App.initHelpers(['datepicker', 'slick']);
+            App.initHelpers(['slick']);
+            //日期时间范围
+            laydate.render({
+                elem: '#time1'
+                , type: 'datetime'
+                , range: true
+            });
+            laydate.render({
+                elem: '#time2'
+                , type: 'datetime'
+                , range: true
+            });
         },
         china_plane: function () {
             $.ajax({
@@ -56,6 +68,7 @@ layui.use(['laytpl', 'layer'], function () {
             type: 'POST',
             dataType: 'jsonp',
             success: function (data) {
+                console.log(data.content.address_detail.ip);
                 return data.content.address_detail.city;
             }
         });

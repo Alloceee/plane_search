@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,6 +20,7 @@ import org.springframework.util.ResourceUtils;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
@@ -35,8 +37,6 @@ public class MailServiceImpl implements MailService {
     private SpringTemplateEngine templateEngine;//thymeleaf
     @Value("${spring.mail.username}")
     public String USER_NAME;//发送者
-    @Value("${server.path}")
-    public String PATH;//发送者
 
 
     @Autowired
@@ -47,7 +47,7 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void send(Email mail) throws Exception {
+    public String send(Email mail){
         logger.info("发送邮件：{}",mail.getContent());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(USER_NAME);
@@ -55,6 +55,29 @@ public class MailServiceImpl implements MailService {
         message.setSubject(mail.getSubject());
         message.setText(mail.getContent());
         mailSender.send(message);
+        return "";
+    }
+
+    @Override
+    public void sendAttachmentsMail(Email mail, String filePath) {
+        logger.info("发送邮件：{}",mail.getContent());
+        MimeMessage message = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(USER_NAME);
+            helper.setTo(mail.getEmail());
+            helper.setSubject(mail.getSubject());
+            helper.setText(mail.getContent(), true);
+
+            FileSystemResource file = new FileSystemResource(new File(filePath));
+            String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+            helper.addAttachment(fileName, file);
+            //helper.addAttachment("test"+fileName, file);
+            mailSender.send(message);
+            logger.info("带附件的邮件已经发送。");
+        } catch (MessagingException e) {
+            logger.error("发送带附件的邮件时发生异常！", e);
+        }
     }
 
     @Override

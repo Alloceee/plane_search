@@ -4,9 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "tb_email")
@@ -18,103 +16,43 @@ public class Email implements Serializable {
     /**
      * 自增主键
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * 接收人邮箱(多个逗号分开)
      */
+    @Column(name = "receive_email", nullable = false, length = 500)
     private String receiveEmail;
 
     /**
      * 主题
      */
+    @Column(name = "subject", nullable = false, length = 100)
     private String subject;
 
     /**
      * 发送内容
      */
+    @Column(nullable = false, columnDefinition = "text comment '详细介绍'")
     private String content;
 
     /**
      * 模板
      */
+    @Column(name = "template", nullable = false, length = 100)
     private String template;
 
     /**
      * 发送时间
      */
-    private Timestamp sendTime;
+    @Column(name = "send_time", nullable = false, length = 19)
+    private Date sendTime;
 
-
-    public Email() {
-        super();
-    }
-
-    public Email(Email mail) {
-        this.receiveEmail = Arrays.toString(mail.getEmail());
-        this.subject = mail.getSubject();
-        this.content = mail.getContent();
-        this.template = mail.getTemplate();
-        this.sendTime = new Timestamp(new Date().getTime());
-    }
 
     public String[] getEmail() {
         return receiveEmail.split(",");
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true, nullable = false)
-    public Long getId() {
-        return id;
-    }
-
-    public void setReceiveEmail(String receiveEmail) {
-        this.receiveEmail = receiveEmail;
-    }
-
-    @Column(name = "receive_email", nullable = false, length = 500)
-    public String getReceiveEmail() {
-        return receiveEmail;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    @Column(name = "subject", nullable = false, length = 100)
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Column(name = "content", nullable = false, length = 65535)
-    public String getContent() {
-        return content;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-
-    @Column(name = "template", nullable = false, length = 100)
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setSendTime(Timestamp sendTime) {
-        this.sendTime = sendTime;
-    }
-
-    @Column(name = "send_time", nullable = false, length = 19)
-    public Timestamp getSendTime() {
-        return sendTime;
-    }
 }

@@ -5,12 +5,10 @@ import com.yws.plane.entity.ChinaFight;
 import com.yws.plane.entity.Fight;
 import com.yws.plane.service.home.SearchService;
 import com.yws.plane.util.JSONData;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -24,19 +22,24 @@ public class SearchController {
     @GetMapping("/china_plane")
     public String china_plane(String startCity, String endCity) {
         List<ChinaFight> chinaFights = searchService.china_plane(startCity, endCity);
-        return JSONData.toJsonString(0,"",chinaFights);
+        return JSONData.toJsonString(0, "", chinaFights);
     }
 
     @GetMapping("/abroad_plane")
     public String abroad_plane(String startCity, String endCity) {
         List<AbroadFight> abroadFights = searchService.abroad_plane(startCity, endCity);
-        return JSONData.toJsonString(0,"",abroadFights);
+        return JSONData.toJsonString(0, "", abroadFights);
     }
 
     @GetMapping("/search")
     public String search(Fight fight) {
-        List<T> fights =  searchService.search(fight);
-        return JSONData.toJsonString(0,"",fights);
+        if (fight.getType() == 0) {
+            List<ChinaFight> fights = searchService.search_china(fight);
+            return JSONData.toJsonString(0, "", fights);
+        } else {
+            List<AbroadFight> fights = searchService.search_abroad(fight);
+            return JSONData.toJsonString(0, "", fights);
+        }
     }
 
 }

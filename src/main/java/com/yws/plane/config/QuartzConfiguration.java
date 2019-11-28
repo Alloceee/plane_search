@@ -3,8 +3,6 @@ package com.yws.plane.config;
 import com.yws.plane.service.QuartzTask;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -13,30 +11,24 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 /**
  * @author AlmostLover
  */
-@Configuration
+//@Configuration
 public class QuartzConfiguration {
     /**
      *  配置任务
      * @param quartzTask QuartzTask为需要执行的任务
      * @return
      */
-    @Bean(name = "reptilianJob")
+//    @Bean(name = "reptilianJob")
     public MethodInvokingJobDetailFactoryBean detailFactoryBean(QuartzTask quartzTask) {
-
         MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();
-
         // 是否并发执行
-        jobDetail.setConcurrent(false);
-
+        jobDetail.setConcurrent(true);
         // 设置任务的名字
         jobDetail.setName("reptilianJob");
-
         // 设置任务的分组，在多任务的时候使用
         jobDetail.setGroup("reptilianJobGroup");
-
         // 需要执行的对象
         jobDetail.setTargetObject(quartzTask);
-
         /*
          * TODO  非常重要
          * 执行QuartzTask类中的需要执行方法
@@ -50,36 +42,33 @@ public class QuartzConfiguration {
      * @param reptilianJob 任务
      * @return
      */
-    @Bean(name = "jobTrigger")
+//    @Bean(name = "jobTrigger")
     public CronTriggerFactoryBean cronJobTrigger(JobDetail reptilianJob){
-
-        CronTriggerFactoryBean tigger = new CronTriggerFactoryBean();
-
-        tigger.setJobDetail(reptilianJob);
+        CronTriggerFactoryBean triggers = new CronTriggerFactoryBean();
+        triggers.setJobDetail(reptilianJob);
         //cron表达式，每1分钟执行一次
-        tigger.setCronExpression("0 0/1 * * * ?");
-        tigger.setName("reptilianTrigger");
-        return tigger;
+        triggers.setCronExpression("0 0/1 * * * ?");
+        triggers.setName("reptilianTrigger");
+        return triggers;
     }
 
     /**
      * 调度工厂
-     * @param jobTrigger 触发器
+     * @param triggers 触发器
      * @return
      */
-    @Bean(name = "scheduler")
-    public SchedulerFactoryBean schedulerFactory(Trigger jobTrigger) {
+//    @Bean(name = "scheduler")
+    public SchedulerFactoryBean schedulerFactory(Trigger ...triggers) {
 
         SchedulerFactoryBean factoryBean = new SchedulerFactoryBean();
-
         // 用于quartz集群,QuartzScheduler 启动时更新己存在的Job
         factoryBean.setOverwriteExistingJobs(true);
 
         // 延时启动，应用启动1秒后
-        factoryBean.setStartupDelay(1);
-
+//        factoryBean.setStartupDelay(1);
+        factoryBean.setAutoStartup(true);
         // 注册触发器
-        factoryBean.setTriggers(jobTrigger);
+        factoryBean.setTriggers(triggers);
         return factoryBean;
     }
 }

@@ -53,98 +53,88 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-12">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <div class="col-sm-4">
-                                <span class="h4 font-w700">东方航空</span>
-                                <span class="h6 font-w400">MU5142</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-12">
-                                    <span class="h4 text-muted">20:10</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 text-muted">13:12</span>
-                                    <span class="h6 text-city">+1天</span>
+                <div class="plane-show" id="search_show"></div>
+                <script id="search_plane" type="text/html">
+                    {{# layui.each( d, function(index, item){ }}
+                    <div class="col-lg-12">
+                        <a class="block block-link-hover3" href="javascript:void(0)" th:alt="点击添加航班起飞提醒">
+                            <div class="block-content block-content-full clearfix">
+                                <div class="col-sm-4">
+                                    <span class="h4 font-w700">{{ item.plane.company.name }}</span>
+                                    <span class="h6 font-w400">{{ item.plane.number }}</span>
                                 </div>
-                                <div class="col-sm-12">
-                                    <span class="h4 font-w700">天河机场&nbsp;</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 font-w700">&nbsp;虹桥机场</span>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-12">
+                                        <span class="h6 text-muted">{{ item.startTime }}</span>
+                                        <i class="fa fa-exchange"></i>
+                                        <span class="h6 text-muted">{{ item.endTime }}</span>
+                                        <span class="h6 text-city">+1天</span>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <span class="h4 font-w700">{{ item.startAirport }}&nbsp;</span>
+                                        <i class="fa fa-exchange"></i>
+                                        <span class="h4 font-w700">&nbsp;{{ item.endAirport }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <span class="h6 font-w400">6小时23分</span>
-                            </div>
-                            <div class="col-sm-2">
-                                <span class="h4 font-w700 money">￥600</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-12">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <div class="col-sm-4">
-                                <span class="h4 font-w700">东方航空</span>
-                                <span class="h6 font-w400">MU5142</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-12">
-                                    <span class="h4 text-muted">20:10</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 text-muted">13:12</span>
-                                    <span class="h6 text-city">+1天</span>
+                                <div class="col-sm-2">
+                                    <span class="h6 font-w400">{{# (item.endTime - item.startTime)}}</span>
                                 </div>
-                                <div class="col-sm-12">
-                                    <span class="h4 font-w700">天河机场&nbsp;</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 font-w700">&nbsp;虹桥机场</span>
+                                <div class="col-sm-2">
+                                    <span class="h4 font-w700 money">￥{{ item.price }}</span>
                                 </div>
                             </div>
-                            <div class="col-sm-2">
-                                <span class="h6 font-w400">6小时23分</span>
-                            </div>
-                            <div class="col-sm-2">
-                                <span class="h4 font-w700 money">￥600</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-12">
-                    <a class="block block-link-hover3" href="javascript:void(0)">
-                        <div class="block-content block-content-full clearfix">
-                            <div class="col-sm-4">
-                                <span class="h4 font-w700">东方航空</span>
-                                <span class="h6 font-w400">MU5142</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-12">
-                                    <span class="h4 text-muted">20:10</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 text-muted">13:12</span>
-                                    <span class="h6 text-city">+1天</span>
+                            <div class="clock_des" hidden="hidden">
+                                <div class="block-content block-content-full clearfix">
+                                    <form class="message_form form-horizontal" action="/clock/add" method="post" onsubmit="return false;">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">提醒类型</label>
+                                            <div class="col-md-7">
+                                                <label class="css-input css-radio css-radio-primary push-10-r">
+                                                    <input type="radio" value="0" name="type" checked=""><span></span>手机号
+                                                </label>
+                                                <label class="css-input css-radio css-radio-primary">
+                                                    <input type="radio" value="1" name="type"><span></span>邮箱
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">手机号/邮箱</label>
+                                            <div class="col-md-4">
+                                                <input class="form-control" type="text"
+                                                       name="account" placeholder="手机号/邮箱">
+                                            </div>
+                                            <button class="col-md-3 btn btn-default btn-minw btn-rounded code_send"
+                                                    type="button">发送验证码
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">验证码</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" type="text"
+                                                       name="phone_code" placeholder="验证码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button class="btn btn-minw btn-rounded btn-info clock_add"
+                                                        type="submit">添加提醒
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="col-sm-12">
-                                    <span class="h4 font-w700">天河机场&nbsp;</span>
-                                    <i class="fa fa-exchange"></i>
-                                    <span class="h4 font-w700">&nbsp;虹桥机场</span>
-                                </div>
                             </div>
-                            <div class="col-sm-2">
-                                <span class="h6 font-w400">6小时23分</span>
-                            </div>
-                            <div class="col-sm-2">
-                                <span class="h4 font-w700 money">￥600</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                    {{# }); }}
+                    {{# if(d.length === 0){ }}
+                    无搜索数据
+                    {{# } }}
+                </script>
             </div>
             <!-- END Simple Tiles -->
         </div>
     </div>
-
 </div>
 
 <!-- footer start -->
@@ -169,48 +159,6 @@
 <script src="/plugins/slick/slick.min.js"></script>
 <script src="/plugins/layui/layui.js"></script>
 
-<script>
-    layui.use(['laytpl', 'layer'], function () {
-        var laytpl = layui.laytpl,
-            $ = layui.jquery,
-            layer = layui.layer;
-        var data = $('#fight').val();
-        console.log(data);
-        $(function () {
-            // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-            App.initHelpers(['datepicker', 'slick']);
-            var data_init = {
-                china_plane: function () {
-                    $.ajax({
-                        type: 'get',
-                        dataType: 'text',
-                        data: JSON.parse(data),
-                        url: '/search',
-                        success: function (res) {
-                            console.log(res);
-                            // //渲染模板数据
-                            // var getTpl = china_plane.innerHTML
-                            //     , view = document.getElementById('china_plane_show');
-                            // laytpl(getTpl).render(JSON.parse(res).data, function (html) {
-                            //     view.innerHTML = html;
-                            // });
-                        }
-                    });
-                },
-            };
-            data_init.china_plane();
-            $('#china_change').on('click', function () {
-                var china_start = $("#china_start").val();
-                $("#china_start").val($('#china_end').val());
-                $("#china_end").val(china_start);
-            });
-            $('#abroad_change').on('click', function () {
-                var abroad_start = $("#abroad_start").val();
-                $("#abroad_start").val($('#abroad_end').val());
-                $("#abroad_end").val(abroad_start);
-            });
-        });
-    });
-</script>
+<script src="/base/base_search.js"></script>
 </body>
 </html>

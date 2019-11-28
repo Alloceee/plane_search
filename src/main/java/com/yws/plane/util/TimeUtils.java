@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class TimeUtils {
     public static final String PATTERN1 = "yyyy-MM-dd HH:mm:ss";
-
+    public static final String PATTERN2 = "yyyy-MM-dd";
     /**
      * 字符串转化为日期格式
      *

@@ -12,7 +12,12 @@ public interface MailService {
      * 更新日志
      * 2017年7月20日  科帮网 首次创建
      */
-    void send(Email mail) throws Exception;
+    String send(Email mail);
+
+    /**
+     * 携带附件
+     */
+    void sendAttachmentsMail(Email email, String filePath);
     /**
      * 富文本
      * @Author  科帮网
