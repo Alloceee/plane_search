@@ -6,10 +6,10 @@ layui.use('table', function () {
         table: function () {
             table.render({
                 elem: '#test'
-                , url: '/admin/company/all'
+                , url: '/admin/news/all'
                 , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                 , defaultToolbar: ['filter', 'exports', 'print']
-                , title: '用户数据表'
+                , title: '航班新闻动态表'
                 , cols: [
                     [
                         {type: 'checkbox', fixed: 'left'}
