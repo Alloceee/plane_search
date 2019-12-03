@@ -1,15 +1,10 @@
 layui.use(['layer'], function () {
     var $ = layui.jquery
         , layer = layui.layer;
-    $.ajax({
-        url: "/admin/company/all",
-        dataType: 'json',
-        type: 'get',
-        success: function (res) {
-            var data = res.data;
-            for (var i = 0; i < data.length; i++) {
-                $('#company_id').append('<option value="' + data[i]['id'] + '">' + data[i]['name'] + '</option>');
-            }
+    $.get("/admin/company/all", function (res) {
+        var data = res.data;
+        for (var i = 0; i < data.length; i++) {
+            $('#company_id').append('<option value="' + data[i]['id'] + '">' + data[i]['name'] + '</option>');
         }
     });
 

@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.yws.plane.entity.Company;
 import com.yws.plane.entity.Email;
 import com.yws.plane.entity.Fight;
+import com.yws.plane.entity.News;
 import com.yws.plane.repository.CompanyRepository;
 import com.yws.plane.service.QuartzTask;
+import com.yws.plane.service.admin.NewsService;
 import com.yws.plane.service.home.MailService;
 import com.yws.plane.util.ExcelUtil;
+import com.yws.plane.util.JSONData;
 import com.yws.plane.util.MessageUtil;
 import com.yws.plane.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,32 +35,38 @@ public class IndexController {
     private CompanyRepository companyRepository;
     @Autowired
     private MailService mailService;
-
+    @Autowired
+    private NewsService newsService;
 
     @GetMapping("/")
     public String index() {
-//        quartzTask.reptilian();
         return "home/index";
     }
 
     @RequestMapping("/send")
     @ResponseBody
     public String send() {
-        return MessageUtil.sendCode("18855109072",121);
+        return MessageUtil.sendCode("18855109072", 121);
     }
 
     @RequestMapping("/export")
-    public void export(HttpServletResponse response){
+    public void export(HttpServletResponse response) {
         List<Company> companies = companyRepository.findAll();
-        ExcelUtil.exportExcel(companies,"公司信息","公司信息",Company.class,"公司信息.xls",response);
+        ExcelUtil.exportExcel(companies, "公司信息", "公司信息", Company.class, "公司信息.xls", response);
     }
 
     @PostMapping("/search")
-    public String search(Fight fight,String time,Model model) {
+    public String search(Fight fight, String time, Model model) {
         fight.setStartTime(TimeUtils.subStartTime(time));
         fight.setEndTime(TimeUtils.subEndTime(time));
         model.addAttribute("fight", JSON.toJSONString(fight));
         return "home/search";
+    }
+
+    @GetMapping("/news")
+    public String news() {
+        List<News> news = newsService.all();
+        return JSONData.toJsonString(0, "", news);
     }
 
     @PostMapping("/send")

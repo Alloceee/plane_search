@@ -1,5 +1,7 @@
 package com.yws.plane.util;
 
+import com.qiniu.util.Md5;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +40,7 @@ public class TimeUtils {
      * @param pattern 转化形式
      * @return 转化后的字符串
      */
-    public static String dataToString(Date date, String pattern) {
+    public static String dateToString(Date date, String pattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
     }
@@ -49,5 +51,15 @@ public class TimeUtils {
 
     public static String subEndTime(String time) {
         return time.substring(22);
+    }
+
+    /**
+     * 获取当天日期的md5值
+     * @return
+     */
+    public static String getMd5Day(){
+        Date date = new Date();
+        String dataStr = dateToString(date,PATTERN2);
+        return  Md5.md5(dataStr.getBytes());
     }
 }

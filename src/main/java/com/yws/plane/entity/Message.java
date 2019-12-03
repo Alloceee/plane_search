@@ -16,8 +16,11 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,columnDefinition = "varchar(20) comment '手机号码'")
+    @Column(columnDefinition = "varchar(20) comment '手机号码'")
     private String phone;
+
+    @Column(columnDefinition = "varchar(20) comment '邮箱'")
+    private String email;
 
     @Column(nullable = false,columnDefinition = "bigint(255) comment '航班Id'")
     private Long plane_id;

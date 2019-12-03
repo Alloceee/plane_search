@@ -2,6 +2,8 @@ package com.yws.plane.service.admin;
 
 import com.yws.plane.entity.News;
 
+import java.util.List;
+
 /**
  * @Author: yewenshu https://github.com/Alloceee
  * @Date: 2019/11/9 21:51
@@ -46,4 +48,5 @@ public interface NewsService {
      */
     String update(News news);
 
+    List<News> all();
 }

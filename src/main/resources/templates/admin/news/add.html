@@ -16,7 +16,7 @@
         <!-- Page Header -->
         <div class="content bg-gray-lighter">
             <h1 class="page-heading push">
-                航空动态管理<small>添加动态信息</small>
+                航班新闻管理<small>添加动态</small>
             </h1>
         </div>
         <!-- END Page Header -->
@@ -29,36 +29,41 @@
                     <div class="push-30 push-30-t">
                         <form class="form-horizontal" method="post" onsubmit="return false;">
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="company_id">所属公司</label>
+                                <label class="col-md-3 control-label" for="title">标题</label>
                                 <div class="col-md-7">
-                                    <select id="company_id" name="companyId"></select>
+                                    <input class="form-control" type="text" id="title" name="title" placeholder="标题"
+                                           required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="model">客机机型</label>
+                                <label class="col-md-3 control-label" for="content">内容</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="model" name="model" placeholder="客机机型" required>
+                                    <textarea class="form-control" id="content" required
+                                              name="content" rows="6" placeholder="内容"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="number">客机序号</label>
+                                <label class="col-md-3 control-label">状态</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" type="text" id="number" name="number"
-                                           placeholder="客机序号" required>
+                                    <label class="css-input css-radio css-radio-primary push-10-r">
+                                        <input type="radio" value="1" name="status" checked=""><span></span>有效
+                                    </label>
+                                    <label class="css-input css-radio css-radio-primary">
+                                        <input type="radio" value="0" name="status"><span></span>无效
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="type">客机型号</label>
+                                <label class="col-md-3 control-label" for="notify_plane">通知航班</label>
                                 <div class="col-md-7">
-                                    <label class="css-input css-radio css-radio-info push-10-r">
-                                        <input type="radio" name="type" id="type" value="0"><span></span>小型
-                                    </label>
-                                    <label class="css-input css-radio css-radio-info push-10-r">
-                                        <input type="radio" name="type" checked="" value="1"><span></span>中型
-                                    </label>
-                                    <label class="css-input css-radio css-radio-info">
-                                        <input type="radio" name="type" value="2"><span></span>大型
-                                    </label>
+                                    <select id="notify_plane" class="form-control" name="notify_plane"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="notify_content">通知内容</label>
+                                <div class="col-md-7">
+                                     <textarea class="form-control" id="notify_content"
+                                               name="notify_content" rows="6" placeholder="通知内容"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,22 +105,17 @@
     layui.use(['layer'], function () {
         var $ = layui.jquery
             , layer = layui.layer;
-        $.ajax({
-            url: "/admin/company/all",
-            dataType: 'json',
-            type: 'get',
-            success: function (res) {
-                var data = res.data;
-                for (var i = 0; i < data.length; i++) {
-                    $('#company_id').append('<option value="' + data[i]['id'] + '">' + data[i]['name'] + '</option>');
-                }
+        $.get("/admin/plane/all", function (res) {
+            var data = res.data;
+            for (var i = 0; i < data.length; i++) {
+                $('#notify_plane').append('<option value="' + data[i]['id'] + '">' + data[i]['number'] + '</option>');
             }
         });
 
         $('form').submit(function () {
             $.ajax({
                 data: $(this).serializeArray(),
-                url: '/admin/plane/add',
+                url: '/admin/news/add',
                 type: 'POST',
                 dataType: 'json',
                 success: function (res) {

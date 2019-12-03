@@ -77,6 +77,7 @@
                                 class="fa fa-search">搜索</i></span>
                     </div>
                     <input type="hidden" name="type" value="0">
+                    <input type="hidden" name="userIp" data-role="user_ip">
                 </form>
             </div>
             <div class="tab-pane" id="btabs-static-justified-profile">
@@ -137,40 +138,28 @@
                     <span class="btn btn-minw search-btn" type="button" id="abroad_search"><i
                             class="fa fa-search">搜索</i></span>
                     </div>
+                    <input type="hidden" name="userIp" data-role="user_ip">
                     <input type="hidden" name="type" value="1">
                 </form>
             </div>
-            <div class="tab-pane" id="btabs-static-justified-settings">
+            <div class="tab-pane" id="btabs-static-justified-settings"></div>
+            <script id="news_show" type="text/html">
                 <div class="row">
+                    {{# layui.each( d, function(index, item){ }}
                     <div class="col-lg-4">
                         <a class="block block-link-hover3" href="javascript:void(0)">
+                            <div class="block-title">{{ item.title }}</div>
                             <div class="block-content block-content-full clearfix">
-                                <span>武汉</span>
-                                <i class="fa fa-exchange"></i>
-                                <span>北京</span>
-                                <span>￥680</span><span>2019-11-2</span>
+                               {{ item.content }}
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-4">
-                        <a class="block block-link-hover3" href="javascript:void(0)">
-                            <div class="block-content block-content-full clearfix">
-                                <i class="si si-users fa-2x text-muted pull-right"></i>
-                                <span class="h4 font-w700">15k</span> <span class="h4 text-muted">users</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <a class="block block-link-hover3" href="javascript:void(0)">
-                            <div class="block-content block-content-full clearfix">
-                                <i class="si si-user-follow fa-2x text-muted pull-right"></i>
-                                <span class="h4 font-w700">12</span> <span class="h4 text-muted">clients</span>
-                            </div>
-                        </a>
-                    </div>
+                    {{# }); }}
+                    {{# if(d.length === 0){ }}
+                    无数据
+                    {{# } }}
                 </div>
-
-            </div>
+            </script>
         </div>
     </div>
 </div>

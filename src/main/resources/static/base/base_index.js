@@ -57,21 +57,30 @@ layui.use(['laytpl', 'layer','laydate'], function () {
                     });
                 }
             });
-        }
-    };
-
-    //获取ip地址
-    var get_ip = function () {
+        },
+        get_news:function(){
+            $.get('/news',function (res) {
+                //渲染模板数据
+                var getTpl = news_show.innerHTML
+                    , view = document.getElementById('btabs-static-justified-settings');
+                laytpl(getTpl).render(JSON.parse(res).data, function (html) {
+                    view.innerHTML = html;
+                });
+            })
+        },
         //获取ip地址
-        $.ajax({
-            url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
-            type: 'POST',
-            dataType: 'jsonp',
-            success: function (data) {
-                console.log(data.content.address_detail.ip);
-                return data.content.address_detail.city;
-            }
-        });
+        get_ip :function () {
+            //获取ip地址
+            $.ajax({
+                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
+                type: 'POST',
+                dataType: 'jsonp',
+                success: function (data) {
+                    console.log(data.content.address_detail.ip);
+                    $("input[data-role='user_ip']").val(data.content.address_detail.ip);
+                }
+            });
+        }
     };
 
     //搜索城市交换
@@ -101,8 +110,7 @@ layui.use(['laytpl', 'layer','laydate'], function () {
         },
         abroad_search: function () {
             $('#abroad_search').on('click', function () {
-                var data = $('#abroad_form').serializeArray();
-                console.log(data);
+                $('#abroad_search').submit();
             })
         }
     };
@@ -139,6 +147,8 @@ layui.use(['laytpl', 'layer','laydate'], function () {
         data_init.plugins_init();
         data_init.china_plane();
         data_init.abroad_plane();
+        data_init.get_news();
+        data_init.get_ip();
         change.china_change();
         change.abroad_change();
         search.china_search();

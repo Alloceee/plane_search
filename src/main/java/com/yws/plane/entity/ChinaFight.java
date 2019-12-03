@@ -68,11 +68,11 @@ public class ChinaFight implements Serializable {
     private Date endTime;
 
     /**
-     * 所属航班
+     * 客机ID
      */
     @ManyToOne
-    @JoinColumn(name = "plane_id", nullable = false, columnDefinition = "int(255) comment '所属航班'")
-    @Excel(name = "所属航班", orderNum = "7")
+    @JoinColumn(name = "plane_id", nullable = false, columnDefinition = "int(255) comment '客机ID'")
+    @Excel(name = "客机ID", orderNum = "7")
     private Plane plane;
 
     /**

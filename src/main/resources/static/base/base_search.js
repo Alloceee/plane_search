@@ -20,6 +20,7 @@ layui.use(['laytpl', 'layer','laydate'], function () {
                 , range: true
             });
         },
+
         search_plane:function () {
             var data = $('#fight').val();
             $.ajax({
@@ -34,6 +35,29 @@ layui.use(['laytpl', 'layer','laydate'], function () {
                     laytpl(getTpl).render(JSON.parse(res).data, function (html) {
                         view.innerHTML = html;
                     });
+                }
+            });
+        },
+        get_news:function(){
+            $.get('/news',function (res) {
+                //渲染模板数据
+                var getTpl = news_show.innerHTML
+                    , view = document.getElementById('btabs-static-justified-settings');
+                laytpl(getTpl).render(JSON.parse(res).data, function (html) {
+                    view.innerHTML = html;
+                });
+            })
+        },
+        //获取ip地址
+        get_ip :function () {
+            //获取ip地址
+            $.ajax({
+                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
+                type: 'POST',
+                dataType: 'jsonp',
+                success: function (data) {
+                    console.log(data.content.address_detail.ip);
+                    $("input[data-role='user_ip']").val(data.content.address_detail.ip);
                 }
             });
         }
@@ -92,6 +116,8 @@ layui.use(['laytpl', 'layer','laydate'], function () {
     var init = function(){
       data_init.plugins_init();
       data_init.search_plane();
+      data_init.get_ip();
+      data_init.get_news();
       des.clock_show();
       des.message_send();
       des.clock_add();

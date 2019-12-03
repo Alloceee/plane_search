@@ -15,4 +15,6 @@ import java.util.List;
 public interface NewsRepository extends JpaRepository<News, Integer> {
 
     List<News> findByTitleLikeOrContentLikeOrCreateTimeLike(String key1, String key2,String key3);
+
+    List<News> findTopByStatusOrderByCreateTime(Integer status);
 }

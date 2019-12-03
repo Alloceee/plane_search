@@ -40,4 +40,9 @@ public class Fight implements Serializable {
      */
     private Integer type;
 
+    /**
+     * 用户Ip
+     */
+    private String userIp;
+
 }

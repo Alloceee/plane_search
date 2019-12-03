@@ -35,4 +35,22 @@ public class News {
      */
     @Column(nullable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP comment '新闻时间'")
     private Date createTime;
+
+    /**
+     * 状态
+     */
+    @Column(nullable = false,columnDefinition = "int(1) comment '状态'")
+    private Integer status;
+
+    /**
+     * 通知航班
+     */
+    @Column(columnDefinition = "varchar(10) comment '通知航班'")
+    private Long notify_plane;
+
+    /**
+     * 通知内容
+     */
+    @Column(columnDefinition = "text comment '通知内容'")
+    private String notify_content;
 }
