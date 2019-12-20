@@ -1,6 +1,9 @@
 package com.yws.plane.entity;
 
 import lombok.Data;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -13,7 +16,7 @@ import javax.persistence.Id;
  * @Project: plane_search
  */
 @Data
-//@Document(indexName = "tb_com", type = "docs", shards = 1, replicas = 0)
+@Document(indexName = "tb_com", type = "docs", shards = 1, replicas = 0)
 public class Com {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +25,7 @@ public class Com {
     /**
      * 公司名称
      */
-//    @Field(type = FieldType.Text, analyzer = "ik_max_word")
+    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     @Column(nullable = false, columnDefinition = "varchar(10) comment '公司名称'")
     private String name;
 
@@ -35,7 +38,7 @@ public class Com {
     /**
      * 详细介绍
      */
-//    @Field(type = FieldType.Keyword)
+    @Field(type = FieldType.Keyword)
     @Column(columnDefinition = "text comment '详细介绍'")
     private String description;
 }

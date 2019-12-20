@@ -73,4 +73,11 @@ public class IndexController {
     public String send(Email email) {
         return mailService.send(email);
     }
+
+    @PostMapping("/api/login")
+    @ResponseBody
+    public String login(String username,String password){
+        System.out.println(username+"   "+password);
+        return JSONData.toJsonString(200,"上传成功","");
+    }
 }
