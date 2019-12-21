@@ -1,10 +1,14 @@
-package com.yws.plane.config;
-
-/**
- * @Author: yewenshu https://github.com/Alloceee
- * @Date: 2019/11/10 20:40
- * @Project: plane_search
- */
+//package com.yws.plane.config;
+//
+//import org.springframework.context.annotation.Configuration;
+//
+//import javax.annotation.PostConstruct;
+//
+///**
+// * @Author: yewenshu https://github.com/Alloceee
+// * @Date: 2019/11/10 20:40
+// * @Project: plane_search
+// */
 //@Configuration
 //public class ElasticSearchConfig {
 //    /**
