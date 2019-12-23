@@ -14,8 +14,8 @@ import java.io.Serializable;
  * @author yewenshu123
  * @since 2019-12-23
  */
-@TableName("tb_abroad_fight")
-public class AbroadFight implements Serializable {
+@TableName("tb_china_fight")
+public class ChinaFight implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -126,7 +126,7 @@ public class AbroadFight implements Serializable {
 
     @Override
     public String toString() {
-        return "AbroadFight{" +
+        return "ChinaFight{" +
         ", id=" + id +
         ", endAirport=" + endAirport +
         ", endCity=" + endCity +

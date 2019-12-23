@@ -1,6 +1,6 @@
 package com.yws.plane.mapper;
 
-import com.yws.plane.entity.Company;
+import com.yws.plane.entity.ChinaFight;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author yewenshu123
- * @since 2019-12-21
+ * @since 2019-12-23
  */
-public interface CompanyMapper extends BaseMapper<Company> {
+public interface ChinaFightMapper extends BaseMapper<ChinaFight> {
 
 }

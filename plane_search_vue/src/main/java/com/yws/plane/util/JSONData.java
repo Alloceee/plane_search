@@ -1,13 +1,17 @@
 package com.yws.plane.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.apache.poi.ss.formula.functions.T;
+
+import java.util.List;
 
 /**
  * 返回Json数据处理类
  */
-public class JSONData {
+public class JSONData<T> {
 
     /**
      * {

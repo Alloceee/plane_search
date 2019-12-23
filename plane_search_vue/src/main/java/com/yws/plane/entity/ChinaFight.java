@@ -1,101 +1,57 @@
 package com.yws.plane.entity;
 
-import cn.afterturn.easypoi.excel.annotation.Excel;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.enums.IdType;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
- * 国内航班信息
+ * <p>
+ * 
+ * </p>
  *
- * @author AlmostLover
+ * @author yewenshu123
+ * @since 2019-12-23
  */
 @Data
-@Entity
-@Table(name = "tb_china_fight")
+@TableName("tb_china_fight")
 public class ChinaFight implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Excel(name = "id", width = 25, orderNum = "0")
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    /**
-     * 始发地
-     */
-    @Excel(name = "startCity", width = 25, orderNum = "1")
-    @Column(nullable = false, columnDefinition = "varchar(10) comment '始发地'")
-    private String startCity;
-
-    /**
-     * 目的地
-     */
-    @Excel(name = "endCity", width = 25, orderNum = "2")
-    @Column(nullable = false, columnDefinition = "varchar(10) comment '目的地'")
-    private String endCity;
-
-    /**
-     * 始发机场
-     */
-    @Excel(name = "startAirport", width = 25, orderNum = "3")
-    @Column(nullable = false, columnDefinition = "varchar(10) comment '始发机场'")
-    private String startAirport;
-
     /**
      * 目的机场
      */
-    @Excel(name = "endAirport", orderNum = "4")
-    @Column(nullable = false, columnDefinition = "varchar(10) comment '目的机场'")
     private String endAirport;
-
     /**
-     * 起飞时间
+     * 目的地
      */
-    @Column(nullable = false, columnDefinition = "datetime comment '起飞时间'")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "开始日期", orderNum = "5", importFormat = "yyyy-MM-dd HH:mm:ss")
-    private Date startTime;
-
+    private String endCity;
     /**
      * 抵达时间
      */
-    @Column(nullable = false, columnDefinition = "datetime comment '抵达时间'")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "开始日期", orderNum = "6", importFormat = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
-
     /**
      * 所属航班
      */
-    @ManyToOne
-    @JoinColumn(name = "plane_id", nullable = false, columnDefinition = "int(255) comment '所属航班'")
-    @Excel(name = "plane_id", orderNum = "7")
-    private Plane plane;
-
+    private Integer planeId;
     /**
-     * 价格
+     * 始发机场
      */
-    @Excel(name = "price", orderNum = "8")
-    @Column(nullable = false, columnDefinition = "float(10, 2) comment '价格'")
+    private String startAirport;
+    /**
+     * 始发地
+     */
+    private String startCity;
+    /**
+     * 起飞时间
+     */
+    private Date startTime;
     private Float price;
-
-    public String getStartTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if (this.startTime == null) {
-            return "";
-        }
-        return sdf.format(this.startTime);
-    }
-
-    public String getEndTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if (this.endTime == null) {
-            return "";
-        }
-        return sdf.format(this.endTime);
-    }
 
 }

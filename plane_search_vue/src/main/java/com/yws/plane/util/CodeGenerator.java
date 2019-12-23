@@ -15,13 +15,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  */
 public class CodeGenerator {
 
-//    public static void main(String[] args) {
-//        String packageName = "com.yws.plane";
-//        boolean serviceNameStartWithI = false;//auth -> UserService, 设置成true: auth -> IUserService
-//        generateByTables(serviceNameStartWithI, packageName, "yewenshu", "db_plane", "tb_company");
 //
-//        System.out.println("completed...");
-//    }
 
     /**
      * @param serviceNameStartWithI
