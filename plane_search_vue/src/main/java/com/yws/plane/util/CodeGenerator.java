@@ -15,7 +15,11 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  */
 public class CodeGenerator {
 
-//
+//    public static void main(String[] args) {
+//        String packageName = "com.baomidou.springboot";
+//        boolean serviceNameStartWithI = false;//user -> UserService, 设置成true: user -> IUserService
+//        generateByTables(serviceNameStartWithI, packageName, "yewenshu","db_plane","tb_message");
+//    }
 
     /**
      * @param serviceNameStartWithI

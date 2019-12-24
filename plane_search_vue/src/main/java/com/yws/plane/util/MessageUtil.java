@@ -1,5 +1,6 @@
 package com.yws.plane.util;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
@@ -18,7 +19,7 @@ public class MessageUtil {
      * @param code  验证码
      * @return
      */
-    public static String sendCode(String phone, Integer code) {
+    public static String phoneCode(String phone, Integer code) {
         String host = "http://yzxyzm.market.alicloudapi.com";
         String path = "/yzx/verifySms";
         String method = "POST";
@@ -50,5 +51,17 @@ public class MessageUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String phoneMessage(String phone, Integer planeId){
+        return "";
+    }
+
+    public static String emailCode(String phone, Integer code){
+        return "email";
+    }
+
+    public static String emailMessage(String phone, Integer planeId){
+        return "";
     }
 }
