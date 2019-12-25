@@ -37,5 +37,9 @@ public class Message implements Serializable {
      */
     private Integer type;
 
+    /**
+     * 验证码
+     */
+    private Integer code;
 
 }

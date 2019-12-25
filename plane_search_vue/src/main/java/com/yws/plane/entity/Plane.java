@@ -3,6 +3,8 @@ package com.yws.plane.entity;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +15,7 @@ import java.io.Serializable;
  * @author yewenshu123
  * @since 2019-12-23
  */
+@Data
 @TableName("tb_plane")
 public class Plane implements Serializable {
 
@@ -37,55 +40,4 @@ public class Plane implements Serializable {
      */
     private Integer type;
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Plane{" +
-        ", id=" + id +
-        ", companyId=" + companyId +
-        ", model=" + model +
-        ", number=" + number +
-        ", type=" + type +
-        "}";
-    }
 }

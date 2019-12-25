@@ -1,9 +1,15 @@
 package com.yws.plane.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -14,6 +20,7 @@ import java.io.Serializable;
  * @author yewenshu123
  * @since 2019-12-23
  */
+@Data
 @TableName("tb_abroad_fight")
 public class AbroadFight implements Serializable {
 
@@ -32,6 +39,8 @@ public class AbroadFight implements Serializable {
     /**
      * 抵达时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
     /**
      * 所属航班
@@ -48,94 +57,23 @@ public class AbroadFight implements Serializable {
     /**
      * 起飞时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date startTime;
     private Float price;
-
-
-    public Long getId() {
-        return id;
+    public String getStartTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (this.startTime == null) {
+            return "";
+        }
+        return sdf.format(this.startTime);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEndAirport() {
-        return endAirport;
-    }
-
-    public void setEndAirport(String endAirport) {
-        this.endAirport = endAirport;
-    }
-
-    public String getEndCity() {
-        return endCity;
-    }
-
-    public void setEndCity(String endCity) {
-        this.endCity = endCity;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public Integer getPlaneId() {
-        return planeId;
-    }
-
-    public void setPlaneId(Integer planeId) {
-        this.planeId = planeId;
-    }
-
-    public String getStartAirport() {
-        return startAirport;
-    }
-
-    public void setStartAirport(String startAirport) {
-        this.startAirport = startAirport;
-    }
-
-    public String getStartCity() {
-        return startCity;
-    }
-
-    public void setStartCity(String startCity) {
-        this.startCity = startCity;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "AbroadFight{" +
-        ", id=" + id +
-        ", endAirport=" + endAirport +
-        ", endCity=" + endCity +
-        ", endTime=" + endTime +
-        ", planeId=" + planeId +
-        ", startAirport=" + startAirport +
-        ", startCity=" + startCity +
-        ", startTime=" + startTime +
-        ", price=" + price +
-        "}";
+    public String getEndTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (this.endTime == null) {
+            return "";
+        }
+        return sdf.format(this.endTime);
     }
 }
